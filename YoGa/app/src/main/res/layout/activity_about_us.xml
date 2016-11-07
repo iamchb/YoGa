@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_contact_as"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.yitong.yoga.activity.ContactUsActivity">
+
+    <include
+        android:id="@+id/titleLay"
+        layout="@layout/title_main" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/contact_us" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="15sp"
+                    android:text="我們的使命" />
+
+                <com.yitong.yoga.JustifyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="我們深信瑜珈能讓所有人的生活更愉快、健康及均衡。憑藉來自亞洲及北美洲既專業又富熱誠的專業導師團隊，Pure Yoga提供最卓越的課程、設施及環境，冀盼激發所有年齡層和各種體能的大眾，讓瑜珈成為他們生活的一部分" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="15sp"
+                    android:text="我們的專長" />
+
+                <com.yitong.yoga.JustifyTextView
+                    android:id="@+id/justifyTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="鬧市中提升體能及洗滌心靈的樂土
+Pure Yoga在亞洲各個城市，包括香港、上海、新加坡與台北的核心地段均設有瑜珈中心。我們同時放眼世界，與美國健身品牌 Equinox合作於紐約開設瑜珈中心。" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+
+                <com.yitong.yoga.JustifyTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Pure Yoga致力凝聚亞洲及區外的瑜珈社群。瑜珈中心每週提供各式瑜珈課程超過 1,600節課程。近 200 位獲專業認證的導師從全球各地帶來多元化的經驗。Pure Yoga鼓勵導師接受持續教育，定期舉辦研習講座與內部培訓，例如Maha Kula Gathering；並設獎學金及內部指導老師（mentor）計劃。我們也鼓勵導師持續不斷參與全球各地的研習課程。" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

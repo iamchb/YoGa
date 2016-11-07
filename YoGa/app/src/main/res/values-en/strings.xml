@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">YoGa</string>
+	<string name="app_test">test</string>
+	<string name="app_book">book</string>
+	<string name="timetable">課程表</string>
+
+</resources>
