@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
         int[] image = {R.drawable.ic_favorite_black_24dp,
                 R.drawable.ic_book_black_24dp};
+//        int[] image = {R.drawable.ic_chevron_left_black_24dp,
+//                R.drawable.ic_chevron_right_black_24dp};
         int[] color = {
                 ContextCompat.getColor(this, R.color.thirdColor), ContextCompat.getColor(this, R.color.fourthColor)};
 
@@ -255,7 +257,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawerlayout);
 
-        if(null!=getSupportActionBar()){
+
+        if (getSupportActionBar() != null){
             getSupportActionBar().hide();
         }
 

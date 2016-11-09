@@ -11,13 +11,13 @@
         android:id="@+id/framlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_above="@+id/bottomNavigation">
+        android:layout_above="@+id/bottomNavigation"
+        android:layout_weight="1">
 
     </FrameLayout>
+
     <com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 </LinearLayout>
