@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.yitong.yoga.activity.BookingHistoryActivity">
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:clipToPadding="true"-->
 
     <include
         android:id="@+id/titleLay"
@@ -14,5 +16,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"/>
 </LinearLayout>

@@ -31,7 +31,7 @@ public class CalendarPickerActivity extends AppCompatActivity {
 
         long firstTime = System.currentTimeMillis();
         setContentView(R.layout.activity_calendar);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 //        ceshi= (Button) findViewById(R.id.ceshi);
         calendar = (CalendarPickerView) findViewById(R.id.calendar_view);
         final Calendar nextYear = Calendar.getInstance();
@@ -61,7 +61,7 @@ public class CalendarPickerActivity extends AppCompatActivity {
 
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText("日曆");
+        title.setText(getResources().getString(R.string.calendar));
         titleLay.setBackgroundColor(getResources().getColor(R.color.blue_light));
         ivDimensCode = (ImageView) findViewById(R.id.title_main_iv_dimension_code);
         ivDimensCode.setImageResource(R.drawable.ic_chevron_left_black_24dp);

@@ -18,10 +18,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText("註冊");
+        title.setText(getResources().getString(R.string.register));
         titleLay.setBackgroundColor(getResources().getColor(R.color.thirdColor));
 
 

@@ -12,11 +12,16 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.yitong.yoga.activity.MainActivity;
 import com.yitong.yoga.R;
-import com.yitong.yoga.adapter.SimpleAdapter;
 import com.yitong.yoga.activity.CalendarPickerActivity;
-import com.yitong.yoga.bean.curriculum;
+import com.yitong.yoga.activity.MainActivity;
+import com.yitong.yoga.adapter.SimpleAdapter;
+import com.yitong.yoga.bean.Curriculum;
+import com.yitong.yoga.bean.SwitchFragmentEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,20 +38,21 @@ public class ReservationRecordFragment extends Fragment {
     protected boolean isFirstLoad = true;
     private SimpleAdapter mAdapter;
     private RecyclerView recyclerView;
-    List<curriculum> personList = new ArrayList<>();
+//    Toolbar mToolbar;
+    List<Curriculum> personList = new ArrayList<>();
     private ImageView ivDimensCode;// 二维码
     private ImageView ivUser;// 个人中心
-
+    TextView title;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (contentView == null) {
             contentView = inflater.inflate(R.layout.fragment_reservationrecord, container, false);
             isFirstLoad = true;
-
+            EventBus.getDefault().register(this);
             RelativeLayout titleLay = (RelativeLayout) contentView.findViewById(R.id.titleLay);
-            TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-            title.setText("預定記錄");
+            title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
+            title.setText(getResources().getString(R.string.reservation_record));
             titleLay.setBackgroundColor(getResources().getColor(R.color.fourthColor));
 
             ivUser = (ImageView) contentView.findViewById(R.id.title_main_img_user);
@@ -65,19 +71,12 @@ public class ReservationRecordFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 //                    ((MainActivity) getActivity()).showDialog();
-                    Intent intent=new Intent(getActivity(), CalendarPickerActivity.class);
+                    Intent intent = new Intent(getActivity(), CalendarPickerActivity.class);
                     getActivity().startActivity(intent);
                 }
             });
             recyclerView = (RecyclerView) contentView.findViewById(R.id.my_recyclerview);
-            personList.add(new curriculum("健康養生", "2015-12-18 12:09",  "尹鵬源","200.0"));
-            personList.add(new curriculum("英語", "2015-12-19 12:09",  "joseph","300.0"));
-            personList.add(new curriculum("陰陽瑜伽", "2015-12-20 12:09",  "simmon","100.0"));
-            personList.add(new curriculum("太極", "2015-12-21 12:09",  "lili","100.0"));
-            personList.add(new curriculum("社交禮儀", "2015-12-22 12:09",  "陳相鵬","400.0"));
-            mAdapter = new SimpleAdapter(personList, getActivity());
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            recyclerView.setAdapter(mAdapter);
+            setData();
 
 
         } else {
@@ -91,4 +90,35 @@ public class ReservationRecordFragment extends Fragment {
         return contentView;
     }
 
+    private void setData() {
+        personList.add(new Curriculum(getResources().getString(R.string.data_class1), "2015-12-18 12:09", getResources().getString(R.string.data_name1), "200.0"));
+        personList.add(new Curriculum(getResources().getString(R.string.data_class2), "2015-12-19 12:09", getResources().getString(R.string.data_name2), "300.0"));
+        personList.add(new Curriculum(getResources().getString(R.string.data_class3), "2015-12-20 12:09", getResources().getString(R.string.data_name3), "100.0"));
+        personList.add(new Curriculum(getResources().getString(R.string.data_class4), "2015-12-21 12:09", getResources().getString(R.string.data_name4), "100.0"));
+        personList.add(new Curriculum(getResources().getString(R.string.data_class5), "2015-12-22 12:09", getResources().getString(R.string.data_name5), "400.0"));
+        mAdapter = new SimpleAdapter(personList, getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(mAdapter);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSwitchFragmentEvent(SwitchFragmentEvent event) {
+
+        if (null != event) {
+//            Log.e("ReservationFragment", event.getPosition() + "");
+            if (event.getPosition() == 3) {
+                title.setText(getResources().getString(R.string.reservation_record));
+                personList.clear();
+                setData();
+            }
+
+        }
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

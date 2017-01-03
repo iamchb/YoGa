@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.yitong.yoga.activity.CourseIntroductionActivity">
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:clipToPadding="true"-->
 
     <include
         android:id="@+id/titleLay"
@@ -22,25 +24,25 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:text="課程：Vinyasa 1" />
+        android:text="@string/booking_class_table1" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="時間：週六 10-22 08:30 am" />
+        android:text="@string/booking_class_table2" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="時長：60分鐘" />
+        android:text="@string/booking_class_table3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:text="地点：中土大廈18B" />
+        android:text="@string/booking_class_table4" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -54,7 +56,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:paddingBottom="10dp"
-            android:text="这类特色课程强调身体的平衡与协调性。大多数人的身体多少都有些失衡，而失衡会导致压力与疲劳。这类课程会帮助学生发现不协调，让身体更强壮、更柔软，也更平衡。透过平衡的动作练习，同学可以提升专注力、核心力量，以及稳定性。这类课程可能包含一些呼吸练习、梵唱，以及冥想。适合稍有瑜伽练习经验的同学，课程将带给练习者振奋、愉悦的体验。这堂课程不会包含完整的倒立练习，但是会教导进入倒立以及程度2动作的准备方式，并为往后的练习打好基础，使同学稳定成长，日后顺利进阶到程度2的课程。" />
+            android:text="@string/booking_class_detail" />
     </ScrollView>
 
     <Button
@@ -65,5 +67,5 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
-        android:text="預定課程" />
+        android:text="@string/booking_class" />
 </LinearLayout>

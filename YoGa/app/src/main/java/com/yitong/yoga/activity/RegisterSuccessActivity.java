@@ -17,11 +17,11 @@ public class RegisterSuccessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_success);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText("設置密碼");
+        title.setText(getResources().getString(R.string.set_pwd));
         titleLay.setBackgroundColor(getResources().getColor(R.color.thirdColor));
 
 

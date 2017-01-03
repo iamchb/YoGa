@@ -17,11 +17,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
+//     getSupportActionBar().hide();
 
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText("登錄");
+        title.setText(getResources().getString(R.string.login));
         titleLay.setBackgroundColor(getResources().getColor(R.color.thirdColor));
 
 

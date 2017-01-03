@@ -19,10 +19,10 @@ public class MyAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText("我的賬戶");
+        title.setText(getResources().getString(R.string.menu_wdzh));
         titleLay.setBackgroundColor(getResources().getColor(R.color.thirdColor));
 
 

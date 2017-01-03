@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.yitong.yoga.activity.MyAccountActivity">
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:clipToPadding="true"-->
 
     <include
         android:id="@+id/titleLay"
@@ -25,28 +27,29 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="20dp"
-            android:text="賬戶餘額：          3,000.00" />
+            android:text="@string/my_account_data1" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="20dp"
-            android:text="剩餘上課次數：    5次" />
+            android:text="@string/my_account_data2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="20dp"
-            android:text="本月消費：           5,000.00" />
+            android:text="@string/my_account_data3" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginTop="20dp"
-            android:text="上月消費：           1,000.00" />
+            android:layout_marginBottom="20dp"
+            android:text="@string/my_account_data4" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,7 +67,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/login_btn_shap"
-            android:text="我要預訂"
+            android:text="@string/make_reservation"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
@@ -76,7 +79,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/login_btn_shap"
-            android:text="預定記錄"
+            android:text="@string/reservation_record"
             android:textColor="@color/white"
             android:textSize="15sp" />
     </LinearLayout>

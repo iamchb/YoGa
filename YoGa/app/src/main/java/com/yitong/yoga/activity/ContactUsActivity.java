@@ -15,11 +15,11 @@ public class ContactUsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_as);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText("聯繫我們");
+        title.setText(getResources().getString(R.string.menu_lxwm));
         titleLay.setBackgroundColor(getResources().getColor(R.color.thirdColor));
 
 

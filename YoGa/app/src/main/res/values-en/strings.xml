@@ -1,9 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">YoGa</string>
-	<string name="app_test">test</string>
-	<string name="app_book">book</string>
-	<string name="timetable">課程表</string>
+    <string name="app_name">YoGa</string>
+    <string name="timetable">Course list</string>
+    <string name="reservation_record">Reservation record</string>
+    <string name="about_us">About us</string>
+    <string name="our_mission_title">Our mission</string>
+    <string name="our_mission">We believe that yoga can make everyone life happier, healthier and more balanced. From Asia and North America with both professional and passionate professional team, Pure Yoga provides the most excellent courses, facilities and environment, hope to inspire all ages and all kinds of physical mass, let yoga become part of their lives</string>
+    <string name="our_expertise_title">Our expertise</string>
+	<string name="our_expertise">To enhance physical fitness and cleansing of the spirit of the land in the downtownPure Yoga
+Pure Yoga in various Asian cities, including Hongkong, Shanghai, Singapore and Taipei, the core area has a yoga center. We also have the whole world in view, and American fitness brand Equinox cooperation in New York opened a yoga center.</string>
+    <string name="introduce">Pure Yoga is committed to the integration of Yoga communities in Asia and beyond. Yoga Center offers more than 1600 courses a week. Nearly 200 certified professional instructors from around the world to bring diversified experience. Pure Yoga encourages mentors to receive continuing education, regular seminars and in-house training, such as Maha Kula Gathering, and a scholarship and internal mentoring program (mentor). We also encourage instructors to continue to participate in the global learning courses.</string>
+    <string name="hint_for_logout">Warm prompt</string>
+    <string name="hint_logout">Are you sure you want to logout account?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
+    <string name="meun_text_yyxz">Language selection</string>
+
+    <string name="language_fanti">Traditional Chinese character</string>
+    <string name="language_jianti">Simplified Chinese character</string>
+
+    <string name="menu_wdzh"> My account </string>
+    <string name="menu_wdls"> Booking history </string>
+    <string name="menu_yyxz"> Language selection </string>
+    <string name="menu_lxwm"> Contact us </string>
+    <string name="menu_gywm"> About us </string>
+    <string name="menu_zhgl"> Account management</string>
+    <string name="menu_zc"> Register </string>
+    <string name="menu_xgmm"> Modify password </string>
+    <string name="menu_dc"> Logout </string>
+    <string name="menu_qdl">Please login in</string>
+
+    <string name="data_class1">Health preserving</string>
+    <string name="data_class2">English</string>
+    <string name="data_class3">Yin and Yang Yoga</string>
+    <string name="data_class4">Tai chi</string>
+    <string name="data_class5">Social etiquette</string>
+
+    <string name="data_name1">yin peng yuan</string>
+    <string name="data_name2">joseph</string>
+    <string name="data_name3">simmon</string>
+    <string name="data_name4">lili</string>
+    <string name="data_name5">chen xiang peng</string>
+
+    <string name="reservation_record_kcmc">Course name</string>
+    <string name="reservation_time">Time：</string>
+    <string name="reservation_jl">Coach：</string>
+    <string name="reservation_money">Course amount</string>
+    <string name="reservation_hit">Are you sure you want to cancel this reservation?</string>
+    <string name="reservation_cancel">Has been canceled</string>
+
+    <string name="reservation_delete">Cancel reservation</string>
+
+    <string name="booking_detail">Booking details</string>
+    <string name="booking_number">Predetermined number:  2239 5689 0001</string>
+    <string name="booking_hint">Reminder: please start within two hours is not allowed to cancel the course</string>
+
+    <string name="course_list_all">All</string>
+    <string name="course_list_aomen">Macao</string>
+    <string name="course_list_luhuan">Ring Road</string>
+    <string name="course_list_sz">Taipa</string>
+
+    <string name="course_introduction">Course introduction</string>
+    <string name="course_hint_message">Only within two days of the course</string>
+
+    <string name="confirm">Confirm</string>
+    <string name="booking_class">Scheduled course</string>
+    <string name="booking_class_detail">This kind of characteristic curriculum emphasizes the balance and coordination of the body. Most people body is somewhat unbalanced, and the imbalance will lead to stress and fatigue. This class will help students find out that they do not coordinate, make the body stronger, softer and more balanced. By balancing the exercise, students can enhance focus, core strength, and stability. This course may contain some breathing exercises, chanting and meditation. Suitable for students who have little experience in yoga practice, the course will bring exciting and enjoyable experience. This course does not contain complete inverted exercises, but will teach in 2 degree and inverted action preparation, and to lay the foundation for future practice, enable students to steady growth, after successfully advanced to the 2 degree courses.</string>
+
+    <string name="booking_class_table1">Course: Vinyasa 1</string>
+    <string name="booking_class_table2">Time: Saturday 10-22 08:30 am</string>
+    <string name="booking_class_table3">Time length: 60 minutes</string>
+    <string name="booking_class_table4">Location: China Building 18B</string>
+
+    <string name="calendar">Calendar</string>
+
+    <string name="contact_us_part1_1">Taipa official store (Apple Authorized Reseller)</string>
+    <string name="contact_us_part1_2">Taipa Muduo street 41-43 house</string>
+    <string name="contact_us_part1_3">Business hours: 6:00am - 10:00pm</string>
+
+    <string name="contact_us_part2_1">High energy store (Apple Authorized Reseller)</string>
+    <string name="contact_us_part2_2">Macao road high energy 62-64B, Macau</string>
+    <string name="contact_us_part2_3">Business hours: 6:00am - 10:00pm</string>
+
+    <string name="contact_us_part3_1">South Bay shop (Apple Authorized Reseller)</string>
+    <string name="contact_us_part3_2">Taipa Muduo street 41-43 house</string>
+    <string name="contact_us_part3_3"> Business hours: 6:00am - 10:00pm</string>
+
+    <string name="modify_pwd">Modify password</string>
+
+    <string name="input_owd">Please enter the original password</string>
+    <string name="input_newpwd"> Please enter a new password</string>
+    <string name="input_pwd_agin">Please enter a new password again</string>
+    <string name="submit">Submit</string>
+
+    <string name="make_reservation">make reservation</string>
+
+    <string name="my_account_data1">Account balance:          3,000.00</string>
+    <string name="my_account_data2">The remaining class:      5 times</string>
+    <string name="my_account_data3">Spending this month:      5000.00</string>
+    <string name="my_account_data4">Last month consumption:   1000</string>
+
+    <string name="register">Register</string>
+    <string name="input_phone_number">Please fill in the phone number</string>
+    <string name="intput_erification_code">Input verification code</string>
+    <string name="send_erification_code">Resend verification code</string>
+    <string name="next">Next</string>
+
+    <string name="login">Login</string>
+    <string name="input_phone_num">Enter a phone number</string>
+    <string name="input_pwd">Enter password</string>
+    <string name="forget_pwd">Forget password</string>
+
+    <string name="set_pwd">Set password</string>
+    <string name="input_pwdagin">Please enter your password again</string>
+    <string name="register_hint">Registered representative you have agreed to this registration</string>
+
+    <string name="register_success">You have successfully registered the application, please log in!</string>
 </resources>

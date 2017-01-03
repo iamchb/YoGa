@@ -16,10 +16,10 @@ public class ModifyPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_password);
 
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText("修改密碼");
+        title.setText(getResources().getString(R.string.modify_pwd));
         titleLay.setBackgroundColor(getResources().getColor(R.color.thirdColor));
 
 

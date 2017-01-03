@@ -2,13 +2,14 @@ package com.yitong.yoga.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,25 +17,38 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationItem;
-import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
-import com.luseen.luseenbottomnavigation.BottomNavigation.OnBottomNavigationItemClickListener;
+import com.yitong.yoga.MyApplication;
 import com.yitong.yoga.R;
 import com.yitong.yoga.adapter.MenuItemAdapter;
 import com.yitong.yoga.bean.SwitchFragmentEvent;
 import com.yitong.yoga.fragment.ReservationRecordFragment;
 import com.yitong.yoga.fragment.TimeTablesFragment;
+import com.yitong.yoga.utils.SharedPreferenceUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
+import me.majiajie.pagerbottomtabstrip.Controller;
+import me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout;
+import me.majiajie.pagerbottomtabstrip.TabItemBuilder;
+import me.majiajie.pagerbottomtabstrip.TabLayoutMode;
+import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 
 public class MainActivity extends AppCompatActivity {
-    //    private BottomNavigationView bottomNavigationView;
     private ArrayList<Fragment> list = new ArrayList<>();
     private ListView mLvLeftMenu;
+//    private BottomNavigationView bottomNavigationView;
+    private PagerBottomTabLayout bottomNavigationView;
+    Controller controller;
+    private MenuItemAdapter adapter;
+    private View myView;
+//    BottomNavigationItem bottomNavigationItem,bottomNavigationItem1;
+//    int image[];
+//    int color[];
 
 //    private CalendarPickerView dialogView;
 //    private AlertDialog theDialog;
@@ -72,78 +86,91 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private BottomNavigationView getBottomNavigationView() {
-        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
-
-        int[] image = {R.drawable.ic_favorite_black_24dp,
-                R.drawable.ic_book_black_24dp};
-//        int[] image = {R.drawable.ic_chevron_left_black_24dp,
-//                R.drawable.ic_chevron_right_black_24dp};
-        int[] color = {
-                ContextCompat.getColor(this, R.color.thirdColor), ContextCompat.getColor(this, R.color.fourthColor)};
-
-        BottomNavigationItem bottomNavigationItem = new BottomNavigationItem
-                ("課程表", color[0], image[0]);
-        BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem
-                ("預定記錄", color[1], image[1]);
-
-        if (bottomNavigationView != null) {
-            bottomNavigationView.isWithText(false);
-            // bottomNavigationView.activateTabletMode();
-            bottomNavigationView.isColoredBackground(true);
-            bottomNavigationView.setTextActiveSize(getResources().getDimension(R.dimen.text_active));
-            bottomNavigationView.setTextInactiveSize(getResources().getDimension(R.dimen.text_inactive));
-//            bottomNavigationView.setItemActiveColorWithoutColoredBackground(ContextCompat.getColor(this, R.color.firstColor));
-            bottomNavigationView.setFont(Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/Noh_normal.ttf"));
-
-            bottomNavigationView.addTab(bottomNavigationItem);
-            bottomNavigationView.addTab(bottomNavigationItem1);
-        }
-
-        return bottomNavigationView;
-    }
-
-    //    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//        // Handle navigation view item clicks here.
-//        int id = item.getItemId();
+//    private void getBottomNavigationView() {
 //
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
+//      int[] image = new int[]{R.drawable.ic_favorite_black_24dp,
+//                R.drawable.ic_book_black_24dp};
+////        int[] image = {R.drawable.ic_chevron_left_black_24dp,
+////                R.drawable.ic_chevron_right_black_24dp};
+//       int[] color=new int[]{
+//                ContextCompat.getColor(this, R.color.thirdColor), ContextCompat.getColor(this, R.color.fourthColor)};
 //
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
+//        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
+//        if (bottomNavigationView != null) {
+//            bottomNavigationView.isWithText(false);
+////            bottomNavigationView.activateTabletMode();
+//            bottomNavigationView.isColoredBackground(true);
+////            bottomNavigationView.willNotRecreate(true);
+//            bottomNavigationView.setTextActiveSize(getResources().getDimension(R.dimen.text_active));
+//            bottomNavigationView.setTextInactiveSize(getResources().getDimension(R.dimen.text_inactive));
+////            bottomNavigationView.setItemActiveColorWithoutColoredBackground(ContextCompat.getColor(this, R.color.firstColor));
+//            bottomNavigationView.setFont(Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/Noh_normal.ttf"));
 //
 //        }
 //
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawer.closeDrawer(GravityCompat.START);
-//        return true;
+//        BottomNavigationItem  bottomNavigationItem = new BottomNavigationItem
+//                (getResources().getString(R.string.timetable), color[0], image[0]);
+//        BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem
+//                (getResources().getString(R.string.reservation_record), color[1], image[1]);
+//
+//        bottomNavigationView.addTab(bottomNavigationItem);
+//
+//        bottomNavigationView.addTab(bottomNavigationItem1);
+////        bottomNavigationView.disableShadow();
 //    }
-    private void setUpDrawer() {
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View myView = inflater.inflate(R.layout.nav_header_main, mLvLeftMenu, false);
-        TextView login = (TextView) myView.findViewById(R.id.tologin);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            }
-        });
-        mLvLeftMenu.addHeaderView(myView);
-        mLvLeftMenu.setAdapter(new MenuItemAdapter(this));
+
+    private void getBottomNavigationView() {
+
+        int[] image = new int[]{R.drawable.ic_favorite_black_24dp,
+                R.drawable.ic_book_black_24dp};
+//        int[] image = {R.drawable.ic_chevron_left_black_24dp,
+//                R.drawable.ic_chevron_right_black_24dp};
+        int[] color=new int[]{
+                ContextCompat.getColor(this, R.color.thirdColor), ContextCompat.getColor(this, R.color.fourthColor)};
+
+        bottomNavigationView = (PagerBottomTabLayout) findViewById(R.id.bottomNavigation);
+//用TabItemBuilder构建一个导航按钮
+        TabItemBuilder tabItemBuilder = new TabItemBuilder(this).create()
+                .setDefaultIcon(image[0])
+                .setText(getResources().getString(R.string.timetable))
+                .setSelectedColor(color[0])
+                .setTag("A")
+                .build();
+
+        //构建导航栏,得到Controller进行后续控制
+        controller = bottomNavigationView.builder()
+                .addTabItem(tabItemBuilder)
+                .addTabItem(image[1], getResources().getString(R.string.reservation_record), color[1])
+//                .setMode(TabLayoutMode.HIDE_TEXT)
+//                .setMode(TabLayoutMode.CHANGE_BACKGROUND_COLOR)
+                .setMode(TabLayoutMode.HIDE_TEXT | TabLayoutMode.CHANGE_BACKGROUND_COLOR)
+                .build();
+
+//        controller.setMessageNumber("A",2);
+//        controller.setDisplayOval(0,true);
+
+        controller.addTabItemClickListener(listener);
+    }
+    OnTabItemSelectListener listener = new OnTabItemSelectListener() {
+        @Override
+        public void onSelected(int index, Object tag) {
+            Log.i("asd", "onSelected:" + index + "   TAG: " + tag.toString());
+            ShowFragment(index);
+        }
+
+        @Override
+        public void onRepeatClick(int index, Object tag) {
+            Log.i("asd", "onRepeatClick:" + index + "   TAG: " + tag.toString());
+        }
+    };
+    private void setUpDrawer() {
+        addHeadview();
+        adapter = new MenuItemAdapter(this);
+        mLvLeftMenu.setAdapter(adapter);
         mLvLeftMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Log.e("onItemClick", position + "");
 
                 switch (position) {
 
@@ -152,34 +179,28 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, MyAccountActivity.class));
                         break;
                     case 2:
-//                        closeDrawLayout();
                         startActivity(new Intent(MainActivity.this, BookingHistoryActivity.class));
                         break;
                     case 3:
-//                        closeDrawLayout();
                         startActivity(new Intent(MainActivity.this, LanguageSelectionActivity.class));
                         break;
                     case 4:
-//                        closeDrawLayout();
                         startActivity(new Intent(MainActivity.this, ContactUsActivity.class));
                         break;
                     case 5:
-//                        closeDrawLayout();
                         startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
                         break;
                     case 8:
-//                        closeDrawLayout();
                         startActivity(new Intent(MainActivity.this, RegisterActivity.class));
                         break;
                     case 9:
-//                        closeDrawLayout();
                         startActivity(new Intent(MainActivity.this, ModifyPasswordActivity.class));
                         break;
                     case 10:
                         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
-                        builder.setTitle("溫馨提示")
-                                .setMessage("您確定登出用戶？")
-                                .setPositiveButton("是",
+                        builder.setTitle(getResources().getString(R.string.hint_for_logout))
+                                .setMessage(getResources().getString(R.string.hint_logout))
+                                .setPositiveButton(getResources().getString(R.string.yes),
                                         new DialogInterface.OnClickListener() {
 
                                             @Override
@@ -189,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
                                                 closeDrawLayout();
                                             }
                                         })
-                                .setNegativeButton("否",
+                                .setNegativeButton(getResources().getString(R.string.no),
                                         new DialogInterface.OnClickListener() {
 
                                             @Override
@@ -198,15 +219,27 @@ public class MainActivity extends AppCompatActivity {
                                                 dialog.dismiss();
                                             }
                                         }).show();
-
                         break;
                     default:
                         break;
-
                 }
-
             }
         });
+    }
+
+    private void addHeadview() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+         myView = inflater.inflate(R.layout.nav_header_main, mLvLeftMenu, false);
+        TextView login = (TextView) myView.findViewById(R.id.tologin);
+        login.setText(getResources().getString(R.string.menu_qdl));
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+        mLvLeftMenu.addHeaderView(myView);
     }
 
     private void closeDrawLayout() {
@@ -220,13 +253,22 @@ public class MainActivity extends AppCompatActivity {
     public void onSwitchFragmentEvent(SwitchFragmentEvent event) {
 
         if (null != event) {
-            Log.e("MainActivity", event.getPosition() + "");
             if (event.getPosition() == 0) {
-//                ShowFragment(0);
-                getBottomNavigationView().selectTab(0);
+//                bottomNavigationView.selectTab(0);
+                controller.setSelect(0);
             } else if (event.getPosition() == 1) {
-//                ShowFragment(1);
-                getBottomNavigationView().selectTab(1);
+//                bottomNavigationView.selectTab(1);
+                controller.setSelect(1);
+            } else if (event.getPosition() == 3) {
+                changLanguage();
+
+                bottomNavigationView.removeAllViews();
+                getBottomNavigationView();
+
+                mLvLeftMenu.removeHeaderView(myView);
+                addHeadview();
+                adapter = new MenuItemAdapter(this);
+                mLvLeftMenu.setAdapter(adapter);
             }
 
         }
@@ -254,16 +296,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        changLanguage();
+
         setContentView(R.layout.drawerlayout);
-
-
-        if (getSupportActionBar() != null){
-            getSupportActionBar().hide();
-        }
-
         EventBus.getDefault().register(this);
-        BottomNavigationView bottomNavigationView = getBottomNavigationView();
+
+        getBottomNavigationView();
         mLvLeftMenu = (ListView) findViewById(R.id.id_lv_left_menu);
 
 //        nextYear.add(Calendar.MONTH, 1);
@@ -271,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
 //        initCalendarInDialog("日期选择", R.layout.dialog);
 
         TimeTablesFragment fragment1 = new TimeTablesFragment();
-        ReservationRecordFragment  fragment2 = new ReservationRecordFragment();
+        ReservationRecordFragment fragment2 = new ReservationRecordFragment();
         list.add(fragment1);
         list.add(fragment2);
 
@@ -281,15 +321,40 @@ public class MainActivity extends AppCompatActivity {
 //        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 //        navigationView.setNavigationItemSelectedListener(this);
         setUpDrawer();
+//        bottomNavigationView.selectTab(0);
+        controller.setSelect(0);
+//        bottomNavigationView.setOnBottomNavigationItemClickListener(new OnBottomNavigationItemClickListener() {
+//            @Override
+//            public void onNavigationItemClick(int index) {
+//                ShowFragment(index);
+//            }
+//        });
 
-        bottomNavigationView.setOnBottomNavigationItemClickListener(new OnBottomNavigationItemClickListener() {
-            @Override
-            public void onNavigationItemClick(int index) {
-                ShowFragment(index);
-            }
-        });
 
+    }
 
+    private void changLanguage() {
+        String language = SharedPreferenceUtil.getInfoFromShared("LANGUAGE", "0");
+        Configuration config = getResources().getConfiguration();
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        switch (language) {
+            case "0":
+                config.locale = Locale.TAIWAN;
+                MyApplication.Language = "0";
+                break;
+            case "1":
+                config.locale = Locale.CHINA;
+                MyApplication.Language = "1";
+                break;
+            case "2":
+                config.locale = Locale.ENGLISH;
+                MyApplication.Language = "2";
+                break;
+            default:
+
+                break;
+        }
+        getResources().updateConfiguration(config, dm);
     }
 
     @Override

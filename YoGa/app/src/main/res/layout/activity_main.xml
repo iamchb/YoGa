@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.yitong.yoga.activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/framlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNavigation"
-        android:layout_weight="1">
-
+        android:layout_above="@+id/bottomNavigation">
     </FrameLayout>
 
-    <com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView
+    <!--<com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView-->
+        <!--android:id="@+id/bottomNavigation"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="56dp"-->
+        <!--android:layout_alignParentBottom="true" />-->
+
+    <me.majiajie.pagerbottomtabstrip.PagerBottomTabLayout
         android:id="@+id/bottomNavigation"
+        app:elevation="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

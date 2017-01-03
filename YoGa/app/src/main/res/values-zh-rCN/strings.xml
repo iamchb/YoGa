@@ -2,8 +2,124 @@
 <resources>
 
 	<string name="app_name">瑜伽</string>
-	<string name="app_test">测试</string>
-	<string name="app_book">书</string>
-	<string name="timetable">課程表</string>
+	<string name="timetable">课程表</string>
+	<string name="reservation_record">预订记录</string>
+	<string name="about_us">关于我们</string>
+	<string name="our_mission_title">我们的使命</string>
+	<string name="our_mission">我们深信瑜珈能让所有人的生活更愉快、健康及均衡。凭藉来自亚洲及北美洲既专业又富热诚的专业导师团队，Pure Yoga提供最卓越的课程、设施及环境，冀盼激发所有年龄层和各种体能的大众，让瑜珈成为他们生活的一部分</string>
+	<string name="our_expertise_title">我们的专长</string>
+	<string name="our_expertise">闹市中提升体能及洗涤心灵的乐土
+Pure Yoga在亚洲各个城市，包括香港、上海、新加坡与台北的核心地段均设有瑜珈中心。我们同时放眼世界，与美国健身品牌 Equinox合作于纽约开设瑜珈中心。</string>
+	<string name="introduce">Pure Yoga致力凝聚亚洲及区外的瑜珈社群。瑜珈中心每週提供各式瑜珈课程超过 1,600节课程。近 200 位获专业认证的导师从全球各地带来多元化的经验。Pure Yoga鼓励导师接受持续教育，定期举办研习讲座与内部培训，例如Maha Kula Gathering；并设奖学金及内部指导老师（mentor）计划。我们也鼓励导师持续不断参与全球各地的研习课程。</string>
+	<string name="hint_for_logout">温馨提示</string>
+	<string name="hint_logout">您确定要登出账号么？</string>
+	<string name="yes">是</string>
+	<string name="no">否</string>
+
+	<string name="meun_text_yyxz">语言选择</string>
+
+	<string name="language_fanti">繁体</string>
+	<string name="language_jianti">简体</string>
+
+	<string name="menu_wdzh">我的帐户</string>
+	<string name="menu_wdls">预订历史</string>
+	<string name="menu_yyxz">语言选择</string>
+	<string name="menu_lxwm">联系我们</string>
+	<string name="menu_gywm">关于我们</string>
+	<string name="menu_zhgl">帐号管理</string>
+	<string name="menu_zc">注册</string>
+	<string name="menu_xgmm">修改密码</string>
+	<string name="menu_dc">登出</string>
+	<string name="menu_qdl">请登录</string>
+
+<!--/////////////////假数据/////////////////////////-->
+	<string name="data_class1">健康养生</string>
+	<string name="data_class2">英语</string>
+	<string name="data_class3">阴阳瑜伽</string>
+	<string name="data_class4">太极</string>
+	<string name="data_class5">社交礼仪</string>
+
+	<string name="data_name1">尹鹏源</string>
+	<string name="data_name2">joseph</string>
+	<string name="data_name3">simmon</string>
+	<string name="data_name4">lili</string>
+	<string name="data_name5">陈相鹏</string>
+<!--///////////////////////////////////////////////////////-->
+
+	<string name="reservation_record_kcmc">课程名称</string>
+	<string name="reservation_time">时间：</string>
+	<string name="reservation_jl">教练：</string>
+	<string name="reservation_money">课程金额</string>
+	<string name="reservation_hit">您确定取消此预定课程？</string>
+	<string name="reservation_cancel">已取消</string>
+
+	<string name="reservation_delete">取消预定</string>
+
+	<string name="booking_detail">预定详情</string>
+	<string name="booking_number">预定编号： 2239 5689 0001</string>
+	<string name="booking_hint">温馨提示：开课请两小时之内不允许取消预订课程</string>
+
+	<string name="course_list_all">全部</string>
+	<string name="course_list_aomen">澳門</string>
+	<string name="course_list_luhuan">路環</string>
+	<string name="course_list_sz">氹仔</string>
+
+	<string name="course_introduction">课程介绍</string>
+	<string name="course_hint_message">只能预订两天之内的课程</string>
+
+	<string name="confirm">确定</string>
+	<string name="booking_class">预定课程</string>
+	<string name="booking_class_detail">这类特色课程强调身体的平衡与协调性。大多数人的身体多少都有些失衡，而失衡会导致压力与疲劳。这类课程会帮助学生发现不协调，让身体更强壮、更柔软，也更平衡。透过平衡的动作练习，同学可以提升专注力、核心力量，以及稳定性。这类课程可能包含一些呼吸练习、梵唱，以及冥想。适合稍有瑜伽练习经验的同学，课程将带给练习者振奋、愉悦的体验。这堂课程不会包含完整的倒立练习，但是会教导进入倒立以及程度2动作的准备方式，并为往后的练习打好基础，使同学稳定成长，日后顺利进阶到程度2的课程。</string>
+
+	<string name="booking_class_table1">课程：Vinyasa 1</string>
+	<string name="booking_class_table2">时间：週六 10-22 08:30 am</string>
+	<string name="booking_class_table3">时长：60分钟</string>
+	<string name="booking_class_table4">地点：中土大厦18B</string>
+
+	<string name="calendar">日历</string>
+
+	<string name="contact_us_part1_1">凼仔官也店 (Apple Authorized Reseller)</string>
+	<string name="contact_us_part1_2">凼仔木铎街41-43号全幢</string>
+	<string name="contact_us_part1_3">营业时间: 6:00am - 10:00pm</string>
+
+	<string name="contact_us_part2_1">高士德店 (Apple Authorized Reseller)</string>
+	<string name="contact_us_part2_2">澳门高士德大马路62-64B号, Macau</string>
+	<string name="contact_us_part2_3">营业时间: 6:00am - 10:00pm</string>
+
+	<string name="contact_us_part3_1">南湾店 (Apple Authorized Reseller)</string>
+	<string name="contact_us_part3_2">凼仔木铎街41-43号全幢</string>
+	<string name="contact_us_part3_3">营业时间: 6:00am - 10:00pm</string>
+
+	<string name="modify_pwd">修改密码</string>
+
+	<string name="input_owd">請輸入原密碼</string>
+	<string name="input_newpwd">請輸入新密碼</string>
+	<string name="input_pwd_agin">請再次輸入新密碼</string>
+	<string name="submit">提交</string>
+
+	<string name="make_reservation">我要预定</string>
+
+	<string name="my_account_data1">账户余额：          3,000.00</string>
+	<string name="my_account_data2">剩余上课次数：      5次</string>
+	<string name="my_account_data3">本月消费：          5,000.00</string>
+	<string name="my_account_data4">上月消费：          1,000.00</string>
+
+	<string name="register">注册</string>
+	<string name="input_phone_number">请填写手机号码</string>
+	<string name="intput_erification_code">输入验证码</string>
+	<string name="send_erification_code">重发验证码</string>
+	<string name="next">下一步</string>
+
+	<string name="login">登录</string>
+	<string name="input_phone_num">输入手机号码</string>
+	<string name="input_pwd">输入密码</string>
+	<string name="forget_pwd">忘记密码</string>
+
+	<string name="set_pwd">设置密码</string>
+	<string name="input_pwdagin">请再次输入密码</string>
+	<string name="register_hint">注册代表您已经同意本次注册行为</string>
+
+	<string name="register_success">您已成功注册应用，请您登录！</string>
+
 
 </resources>

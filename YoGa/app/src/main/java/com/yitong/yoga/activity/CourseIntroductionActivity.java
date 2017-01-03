@@ -17,10 +17,10 @@ public class CourseIntroductionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_introduction);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText("課程介紹");
+        title.setText(getResources().getString(R.string.course_introduction));
         titleLay.setBackgroundColor(getResources().getColor(R.color.thirdColor));
 
 
@@ -39,9 +39,9 @@ public class CourseIntroductionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(CourseIntroductionActivity.this);
-                builder.setTitle("溫馨提示")
-                        .setMessage("只能預訂兩天之內的課程")
-                        .setPositiveButton("確定",
+                builder.setTitle(getResources().getString(R.string.hint_for_logout))
+                        .setMessage(getResources().getString(R.string.course_hint_message))
+                        .setPositiveButton(getResources().getString(R.string.confirm),
                                 new DialogInterface.OnClickListener() {
 
                                     @Override

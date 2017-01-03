@@ -15,10 +15,13 @@ public class BookingDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_detail);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText("預定詳情");
+        TextView booking_number = (TextView)findViewById(R.id.booking_number);
+        title.setText(getResources().getString(R.string.booking_detail));
+
+        booking_number.setText(getResources().getString(R.string.booking_number));
         titleLay.setBackgroundColor(getResources().getColor(R.color.fourthColor));
 
 

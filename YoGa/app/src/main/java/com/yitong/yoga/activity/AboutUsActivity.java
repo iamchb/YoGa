@@ -15,11 +15,12 @@ public class AboutUsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
-        getSupportActionBar().hide();
-
+//        getSupportActionBar().hide();
+//        StatusBarCompat.setStatusBarColor(this, Color.GREEN);
+//        StatusBarCompat.setStatusBarColor(this, Color.TRANSPARENT);
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText("關於我們");
+        title.setText(getResources().getString(R.string.about_us));
         titleLay.setBackgroundColor(getResources().getColor(R.color.thirdColor));
 
 

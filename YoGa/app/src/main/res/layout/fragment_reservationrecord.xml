@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:clipToPadding="true"-->
     <!--android:background="@color/white"-->
 
     <include
@@ -12,17 +13,17 @@
 
 
     <!--<com.andview.refreshview.XRefreshView xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:xrefreshview="http://schemas.android.com/apk/res-auto"-->
-        <!--android:id="@+id/custom_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="#fff">-->
+    <!--xmlns:xrefreshview="http://schemas.android.com/apk/res-auto"-->
+    <!--android:id="@+id/custom_view"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="#fff">-->
 
-        <android.support.v7.widget.RecyclerView
-
-            android:id="@+id/my_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FAFAFf" />
 
     <!--</com.andview.refreshview.XRefreshView>-->
 </LinearLayout>

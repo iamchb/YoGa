@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.yitong.yoga.activity.ContactUsActivity">
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:clipToPadding="true"-->
 
     <include
         android:id="@+id/titleLay"
@@ -37,13 +39,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="氹仔官也店 (Apple Authorized Reseller)" />
+                    android:text="@string/contact_us_part1_1" />
 
                 <TextView
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="氹仔木鐸街41-43號全幢" />
+                    android:text="@string/contact_us_part1_2" />
 
                 <TextView
                     android:layout_marginLeft="10dp"
@@ -55,7 +57,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="營業時間: 6:00am - 10:00pm" />
+                    android:text="@string/contact_us_part1_3" />
             </LinearLayout>
 
 
@@ -76,13 +78,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="高士德店 (Apple Authorized Reseller)" />
+                    android:text="@string/contact_us_part2_1" />
 
                 <TextView
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="澳門高士德大馬路62-64B號, Macau" />
+                    android:text="@string/contact_us_part2_2" />
 
                 <TextView
                     android:layout_marginLeft="10dp"
@@ -94,7 +96,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="營業時間: 6:00am - 10:00pm" />
+                    android:text="@string/contact_us_part2_3" />
             </LinearLayout>
 
 
@@ -115,13 +117,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="南灣店 (Apple Authorized Reseller)" />
+                    android:text="@string/contact_us_part3_1" />
 
                 <TextView
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="氹仔木鐸街41-43號全幢" />
+                    android:text="@string/contact_us_part3_2" />
 
                 <TextView
                     android:layout_marginLeft="10dp"
@@ -134,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:text="營業時間: 6:00am - 10:00pm" />
+                    android:text="@string/contact_us_part3_3" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

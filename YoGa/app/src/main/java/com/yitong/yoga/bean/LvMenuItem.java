@@ -1,7 +1,6 @@
 package com.yitong.yoga.bean;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 /**
  * YoGa
@@ -36,7 +35,7 @@ public class LvMenuItem {
             throw new IllegalArgumentException("you need st a name for a non-SEPARATOR item");
         }
 
-        Log.e("LvMenuItem", type + "");
+//        Log.e("LvMenuItem", type + "");
 
 
     }

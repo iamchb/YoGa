@@ -1,9 +1,9 @@
 package com.yitong.yoga.bean;
 
 /**
- * Created by linlongxin on 2016/1/26.
+ * Created by linlongxin on 2016/1/26
  */
-public class curriculum {
+public class Curriculum {
 
 
 
@@ -12,7 +12,7 @@ public class curriculum {
     private String coach;
     private String money;
 
-    public curriculum(String curriculum, String time, String coach,String money) {
+    public Curriculum(String curriculum, String time, String coach, String money) {
         this.curriculum = curriculum;
         this.time = time;
         this.coach = coach;

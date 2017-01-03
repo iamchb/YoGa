@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.yitong.yoga.activity.RegisterSuccessActivity">
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:clipToPadding="true"-->
 
     <include
         android:id="@+id/titleLay"
@@ -23,8 +25,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_gravity="center"
-        android:text="您已成功註冊應用，請您登陸！"/>
+        android:text="@string/register_success"/>
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
@@ -34,7 +38,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/login_btn_shap"
-        android:text="確定"
+        android:text="@string/confirm"
         android:textColor="@color/white"
         android:textSize="20sp" />
 </LinearLayout>

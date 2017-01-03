@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:clipToPadding="true"-->
     <include
         android:id="@+id/titleLay"
         layout="@layout/title_timetables_title" />
@@ -23,13 +24,15 @@
         android:id="@+id/custom_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff">
+
+       >
 
         <com.yitong.yoga.stickyListHeaders.StickyListHeadersListView
             android:id="@+id/sticky_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:numColumns="3" />
+
+            />
 
     </com.andview.refreshview.XRefreshView>
 </LinearLayout>

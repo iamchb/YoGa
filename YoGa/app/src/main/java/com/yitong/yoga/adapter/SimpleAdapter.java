@@ -17,15 +17,15 @@ import android.widget.Toast;
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.yitong.yoga.R;
 import com.yitong.yoga.activity.BookingDetailActivity;
-import com.yitong.yoga.bean.curriculum;
+import com.yitong.yoga.bean.Curriculum;
 
 import java.util.List;
 
 public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapterViewHolder> {
-    private List<curriculum> list;
+    private List<Curriculum> list;
 //    private int largeCardHeight, smallCardHeight;
     private Context context;
-    public SimpleAdapter(List<curriculum> list, Context context) {
+    public SimpleAdapter(List<Curriculum> list, Context context) {
         this.list = list;
         this.context=context;
 //        largeCardHeight = DensityUtil.dip2px(context, 150);
@@ -34,35 +34,35 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
     @Override
     public void onBindViewHolder(final SimpleAdapterViewHolder holder, int position, boolean isItem) {
-        final curriculum person = list.get(position);
+        final Curriculum person = list.get(position);
 
         holder.curriculum.setText(person.getCurriculum());
         holder.time.setText(person.getTime());
         holder.coach.setText(person.getCoach());
         holder.amount_money.setText(person.getMoney());
-        holder. name.setText("課程名稱");
-        holder. timeTle.setText("時間：");
-        holder. coachName.setText("教練：");
-        holder.curriculumName.setText("課程金額");
+        holder. name.setText(context.getResources().getString(R.string.reservation_record_kcmc));
+        holder. timeTle.setText(context.getResources().getString(R.string.reservation_time));
+        holder. coachName.setText(context.getResources().getString(R.string.reservation_jl));
+        holder.curriculumName.setText(context.getResources().getString(R.string.reservation_money));
         holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-                builder.setTitle("溫馨提示")
-                        .setMessage("您確定取消此預定課程？")
-                        .setPositiveButton("是",
+                builder.setTitle(context.getResources().getString(R.string.hint_for_logout))
+                        .setMessage(context.getResources().getString(R.string.reservation_hit))
+                        .setPositiveButton(context.getResources().getString(R.string.yes),
                                 new DialogInterface.OnClickListener() {
 
                                     @Override
                                     public void onClick(DialogInterface dialog,
                                                         int which) {
-                                        Toast.makeText(context, "已取消", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, context.getResources().getString(R.string.reservation_cancel), Toast.LENGTH_SHORT).show();
                                         list.remove(person);
                                         notifyDataSetChanged();
 
                                     }
                                 })
-                        .setNegativeButton("否",
+                        .setNegativeButton(context.getResources().getString(R.string.no),
                                 new DialogInterface.OnClickListener() {
 
                                     @Override
@@ -100,7 +100,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         return new SimpleAdapterViewHolder(view, false);
     }
 
-    public void setData(List<curriculum> list) {
+    public void setData(List<Curriculum> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -113,7 +113,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         return vh;
     }
 
-    public void insert(curriculum person, int position) {
+    public void insert(Curriculum person, int position) {
         insert(list, person, position);
     }
 
@@ -166,7 +166,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         }
     }
 
-    public curriculum getItem(int position) {
+    public Curriculum getItem(int position) {
         if (position < list.size())
             return list.get(position);
         else

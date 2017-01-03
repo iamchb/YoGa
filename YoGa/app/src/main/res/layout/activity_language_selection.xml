@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <!--android:background="#f7f6f6"-->
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:clipToPadding="true"-->
 
     <include
         android:id="@+id/titleLay"
@@ -45,7 +47,7 @@
             android:layout_marginLeft="15dp"
             android:layout_toEndOf="@+id/language_iv_fanti"
             android:layout_toRightOf="@+id/language_iv_fanti"
-            android:text="繁體"
+            android:text="@string/language_fanti"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -92,7 +94,7 @@
             android:layout_marginLeft="15dp"
             android:layout_toEndOf="@+id/language_iv_jianti"
             android:layout_toRightOf="@+id/language_iv_jianti"
-            android:text="简体"
+            android:text="@string/language_jianti"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 

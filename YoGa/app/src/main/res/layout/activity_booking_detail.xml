@@ -6,12 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.yitong.yoga.activity.CourseIntroductionActivity">
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:clipToPadding="true"-->
 
     <include
         android:id="@+id/titleLay"
         layout="@layout/title_main" />
 
     <TextView
+        android:id="@+id/booking_number"
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,6 +37,6 @@
         android:layout_marginLeft="10dp"
         android:layout_gravity="center"
         android:layout_marginRight="10dp"
-        android:text="*溫馨提示：開課請兩小時之內不允許取消預訂課程" />
+        android:text="@string/booking_hint" />
 
 </LinearLayout>
