@@ -45,6 +45,7 @@ Pure Yoga in various Asian cities, including Hongkong, Shanghai, Singapore and T
     <string name="data_name5">chen xiang peng</string>
 
     <string name="reservation_record_kcmc">Course name</string>
+    <string name="reservation_record_kczt">Course status:</string>
     <string name="reservation_time">Time：</string>
     <string name="reservation_jl">Coach：</string>
     <string name="reservation_money">Course amount</string>
@@ -69,10 +70,10 @@ Pure Yoga in various Asian cities, including Hongkong, Shanghai, Singapore and T
     <string name="booking_class">Scheduled course</string>
     <string name="booking_class_detail">This kind of characteristic curriculum emphasizes the balance and coordination of the body. Most people body is somewhat unbalanced, and the imbalance will lead to stress and fatigue. This class will help students find out that they do not coordinate, make the body stronger, softer and more balanced. By balancing the exercise, students can enhance focus, core strength, and stability. This course may contain some breathing exercises, chanting and meditation. Suitable for students who have little experience in yoga practice, the course will bring exciting and enjoyable experience. This course does not contain complete inverted exercises, but will teach in 2 degree and inverted action preparation, and to lay the foundation for future practice, enable students to steady growth, after successfully advanced to the 2 degree courses.</string>
 
-    <string name="booking_class_table1">Course: Vinyasa 1</string>
-    <string name="booking_class_table2">Time: Saturday 10-22 08:30 am</string>
-    <string name="booking_class_table3">Time length: 60 minutes</string>
-    <string name="booking_class_table4">Location: China Building 18B</string>
+    <string name="booking_class_table1">Course:</string>
+    <string name="booking_class_table2">Time: </string>
+    <string name="booking_class_table3">Time </string>
+    <string name="booking_class_table4">Location: </string>
 
     <string name="calendar">Calendar</string>
 
@@ -97,25 +98,51 @@ Pure Yoga in various Asian cities, including Hongkong, Shanghai, Singapore and T
 
     <string name="make_reservation">make reservation</string>
 
-    <string name="my_account_data1">Account balance:          3,000.00</string>
-    <string name="my_account_data2">The remaining class:      5 times</string>
-    <string name="my_account_data3">Spending this month:      5000.00</string>
-    <string name="my_account_data4">Last month consumption:   1000</string>
+    <string name="my_account_data1">Account balance:          </string>
+    <string name="my_account_data2">The remaining class:      </string>
+    <string name="my_account_data3">Spending this month:      </string>
+    <string name="my_account_data4">Last month consumption:   </string>
 
     <string name="register">Register</string>
-    <string name="input_phone_number">Please fill in the phone number</string>
+    <string name="input_phone_number">Please fill in your phone or email </string>
     <string name="intput_erification_code">Input verification code</string>
     <string name="send_erification_code">Resend verification code</string>
     <string name="next">Next</string>
 
     <string name="login">Login</string>
-    <string name="input_phone_num">Enter a phone number</string>
+    <string name="input_phone_num">Enter phone number or email</string>
     <string name="input_pwd">Enter password</string>
-    <string name="forget_pwd">Forget password</string>
+    <string name="forget_pwd">Forget password?</string>
 
     <string name="set_pwd">Set password</string>
     <string name="input_pwdagin">Please enter your password again</string>
     <string name="register_hint">Registered representative you have agreed to this registration</string>
 
     <string name="register_success">You have successfully registered the application, please log in!</string>
+
+    <string name="progress_load_msg">Loading&#8230;</string>
+
+    <string name="login_phone_cannot_empty">Please enter your mobile phone number</string>
+    <string name="login_area_cannot_empty">The code cannot be empty</string>
+    <string name="login_phone_minsize">Cell phone number or email can not be less than 8!</string>
+
+    <string name="logoin_pwd">Please enter the login password, no less than 6</string>
+
+    <string name="verification_Code">Please enter the verification code, the length of not less than 6</string>
+
+    <string name="setpwd_error_1">Password is empty </string>
+    <string name="setpwd_error_2">Password length must be greater than or equal to 6</string>
+    <string name="setpwd_error_3">Password input is not consistent</string>
+
+    <string name="modify_pwd_empty">The original password can not be empty</string>
+    <string name="modify_pwd_less">The new password length should not be less than 6</string>
+    <string name="modify_pwd_diffrent">The password you entered is not consistent, please check it and re-enter it</string>
+    <string name="modify_pwd_error">The original password validation failed, please re-enter</string>
+
+    <string name="regesiter_inuput_error">Account entry error, please check and then re-enter</string>
+
+    <string name="logined">Already logged in</string>
+
+    <string name="login_immediately">Login immediately</string>
+    <string name="login_to_see">Log in and view the scheduled record</string>
 </resources>

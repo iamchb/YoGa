@@ -47,6 +47,7 @@ Pure Yoga在亚洲各个城市，包括香港、上海、新加坡与台北的�
 <!--///////////////////////////////////////////////////////-->
 
 	<string name="reservation_record_kcmc">课程名称</string>
+	<string name="reservation_record_kczt">课程状态：</string>
 	<string name="reservation_time">时间：</string>
 	<string name="reservation_jl">教练：</string>
 	<string name="reservation_money">课程金额</string>
@@ -71,10 +72,10 @@ Pure Yoga在亚洲各个城市，包括香港、上海、新加坡与台北的�
 	<string name="booking_class">预定课程</string>
 	<string name="booking_class_detail">这类特色课程强调身体的平衡与协调性。大多数人的身体多少都有些失衡，而失衡会导致压力与疲劳。这类课程会帮助学生发现不协调，让身体更强壮、更柔软，也更平衡。透过平衡的动作练习，同学可以提升专注力、核心力量，以及稳定性。这类课程可能包含一些呼吸练习、梵唱，以及冥想。适合稍有瑜伽练习经验的同学，课程将带给练习者振奋、愉悦的体验。这堂课程不会包含完整的倒立练习，但是会教导进入倒立以及程度2动作的准备方式，并为往后的练习打好基础，使同学稳定成长，日后顺利进阶到程度2的课程。</string>
 
-	<string name="booking_class_table1">课程：Vinyasa 1</string>
-	<string name="booking_class_table2">时间：週六 10-22 08:30 am</string>
-	<string name="booking_class_table3">时长：60分钟</string>
-	<string name="booking_class_table4">地点：中土大厦18B</string>
+	<string name="booking_class_table1">课程：</string>
+	<string name="booking_class_table2">时间：</string>
+	<string name="booking_class_table3">时长：</string>
+	<string name="booking_class_table4">地点：</string>
 
 	<string name="calendar">日历</string>
 
@@ -99,27 +100,50 @@ Pure Yoga在亚洲各个城市，包括香港、上海、新加坡与台北的�
 
 	<string name="make_reservation">我要预定</string>
 
-	<string name="my_account_data1">账户余额：          3,000.00</string>
-	<string name="my_account_data2">剩余上课次数：      5次</string>
-	<string name="my_account_data3">本月消费：          5,000.00</string>
-	<string name="my_account_data4">上月消费：          1,000.00</string>
+	<string name="my_account_data1">账户余额：          </string>
+	<string name="my_account_data2">剩余上课次数：      </string>
+	<string name="my_account_data3">本月消费：          </string>
+	<string name="my_account_data4">上月消费：          </string>
 
 	<string name="register">注册</string>
-	<string name="input_phone_number">请填写手机号码</string>
+	<string name="input_phone_number">请填写手机号码或邮箱</string>
 	<string name="intput_erification_code">输入验证码</string>
 	<string name="send_erification_code">重发验证码</string>
 	<string name="next">下一步</string>
 
 	<string name="login">登录</string>
-	<string name="input_phone_num">输入手机号码</string>
+	<string name="input_phone_num">请填写手机号码或邮箱</string>
 	<string name="input_pwd">输入密码</string>
-	<string name="forget_pwd">忘记密码</string>
+	<string name="forget_pwd">忘记密码?</string>
 
 	<string name="set_pwd">设置密码</string>
 	<string name="input_pwdagin">请再次输入密码</string>
 	<string name="register_hint">注册代表您已经同意本次注册行为</string>
 
 	<string name="register_success">您已成功注册应用，请您登录！</string>
+	<string name="progress_load_msg">正在加载&#8230;</string>
 
+	<string name="login_phone_cannot_empty">请输入手机号码</string>
+	<string name="login_area_cannot_empty">区号不能为空</string>
+	<string name="login_phone_minsize">手机号码或邮箱不能小于8位!</string>
 
+	<string name="logoin_pwd">请正确输入登入密码，长度不少于6位</string>
+
+	<string name="verification_Code">请输入验证码,长度不少于6位</string>
+
+	<string name="setpwd_error_1">密码为空</string>
+	<string name="setpwd_error_2">密码长度必须大于等于6</string>
+	<string name="setpwd_error_3">	密码输入不一致</string>
+
+	<string name="modify_pwd_empty">原密码不能为空</string>
+	<string name="modify_pwd_less">新密码长度不能少于6位</string>
+	<string name="modify_pwd_diffrent">您输入的密码不一致，请核对后重新输入</string>
+	<string name="modify_pwd_error">原密码验证失败，请重新输入</string>
+
+	<string name="regesiter_inuput_error">账户输入有误，请检查后重新输入</string>
+
+	<string name="logined">已登录</string>
+
+	<string name="login_immediately">立即登录</string>
+	<string name="login_to_see">登录后查看预定记录</string>
 </resources>

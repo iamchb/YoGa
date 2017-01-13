@@ -18,9 +18,9 @@ import com.yitong.yoga.universalimageloader.core.ImageLoader;
 import com.yitong.yoga.universalimageloader.core.ImageLoaderConfiguration;
 import com.yitong.yoga.universalimageloader.core.assist.ImageScaleType;
 import com.yitong.yoga.universalimageloader.core.download.BaseImageDownloader;
-import com.yitong.yoga.utils.AndroidUtil;
 import com.yitong.yoga.utils.LangeuageUtils;
 import com.yitong.yoga.utils.Logs;
+import com.yitong.yoga.utils.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -65,13 +65,14 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         // 请求启动页
-        ServiceUrlManager.setServiceBaseUrl("http://10.10.0.62/MEG_STAR_CRM");//MegStarCRM
+        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.71:8088/YogaApp");//MegStarCRM
 
 //		CrashHandler.getInstance().init(this);
         LeakCanary.install(this);
         refWatcher = LeakCanary.install(this);
 
         instance = this;
+        Utils.init(instance);
         init();
 
         mActivityCallback = new MyActivityLifecycleCallbacks();
@@ -194,18 +195,18 @@ public class MyApplication extends Application {
         Map<String, Object> params = new HashMap<>();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         Date currentDate = new Date(System.currentTimeMillis());
-        params.put("REQ_TIME", formatter.format(currentDate));
-        params.put("CLIENT_NO", AndroidUtil.getDeviceUUID(MyApplication.getInstance()));
-        params.put("CLIENT_TYPE", "AD");
-        params.put("CLIENT_OS", "A");
-        params.put("CLIENT_INFO", "1");
-        params.put("X_LINE", "2");
-        params.put("Y_LINE", "3");
-        if (!isCN) {//繁体
-            params.put("local", "0");
-        } else {//简体
-            params.put("local", "1");
-        }
+//        params.put("REQ_TIME", formatter.format(currentDate));
+//        params.put("CLIENT_NO", AndroidUtil.getDeviceUUID(MyApplication.getInstance()));
+//        params.put("CLIENT_TYPE", "AD");
+//        params.put("CLIENT_OS", "A");
+//        params.put("CLIENT_INFO", "1");
+//        params.put("X_LINE", "2");
+//        params.put("Y_LINE", "3");
+//        if (!isCN) {//繁体
+//            params.put("local", "0");
+//        } else {//简体
+//            params.put("local", "1");
+//        }
         return params;
     }
 

@@ -27,4 +27,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"/>
 
+    <!--<com.roughike.bottombar.BottomBar-->
+        <!--android:id="@+id/bottomNavigation"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="56dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--app:bb_tabXmlResource="@xml/bottombar_tabs_color_changing"-->
+        <!--app:bb_behavior="shifting|underNavbar" />-->
+
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.yitong.yoga.activity;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -19,11 +21,21 @@ import android.widget.TextView;
 
 import com.yitong.yoga.MyApplication;
 import com.yitong.yoga.R;
+import com.yitong.yoga.ServiceCode;
+import com.yitong.yoga.UserManager;
 import com.yitong.yoga.adapter.MenuItemAdapter;
+import com.yitong.yoga.bean.DoLogin;
 import com.yitong.yoga.bean.SwitchFragmentEvent;
 import com.yitong.yoga.fragment.ReservationRecordFragment;
 import com.yitong.yoga.fragment.TimeTablesFragment;
+import com.yitong.yoga.http.APPResponseHandler;
+import com.yitong.yoga.http.APPRestClient;
+import com.yitong.yoga.http.ServiceUrlManager;
+import com.yitong.yoga.http.YTBaseRequestParams;
+import com.yitong.yoga.http.YTRequestParams;
+import com.yitong.yoga.utils.Logs;
 import com.yitong.yoga.utils.SharedPreferenceUtil;
+import com.yitong.yoga.utils.ToastTools;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -41,20 +53,14 @@ import me.majiajie.pagerbottomtabstrip.listener.OnTabItemSelectListener;
 public class MainActivity extends AppCompatActivity {
     private ArrayList<Fragment> list = new ArrayList<>();
     private ListView mLvLeftMenu;
-//    private BottomNavigationView bottomNavigationView;
+    //    private BottomNavigationView bottomNavigationView;
     private PagerBottomTabLayout bottomNavigationView;
     Controller controller;
     private MenuItemAdapter adapter;
     private View myView;
-//    BottomNavigationItem bottomNavigationItem,bottomNavigationItem1;
-//    int image[];
-//    int color[];
+    private static final String TAG = "MainActivity";
 
-//    private CalendarPickerView dialogView;
-//    private AlertDialog theDialog;
-//    final Calendar nextYear = Calendar.getInstance();
-//    final Calendar lastYear = Calendar.getInstance();
-
+    private Dialog waitDialog;
     private void ShowFragment(int index) {
         switch (index) {
             case 0:
@@ -70,54 +76,25 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case 1:
-                if (!list.get(1).isAdded()) { // 先判断是否被add过
-                    getSupportFragmentManager().beginTransaction().add(R.id.framlayout, list.get(1)).hide(list.get(0))
-                            .show(list.get(1)).commitAllowingStateLoss();// 隐藏当前的fragment，add下一个到Activity中
-                    // getSupportFragmentManager(). executePendingTransactions();
 
-                } else {
-                    getSupportFragmentManager().beginTransaction().hide(list.get(0))
-                            .show(list.get(1)).commitAllowingStateLoss();
-                    // getSupportFragmentManager(). executePendingTransactions();
-                }
+                   if (!list.get(1).isAdded()) { // 先判断是否被add过
+                       getSupportFragmentManager().beginTransaction().add(R.id.framlayout, list.get(1)).hide(list.get(0))
+                               .show(list.get(1)).commitAllowingStateLoss();// 隐藏当前的fragment，add下一个到Activity中
+                       // getSupportFragmentManager(). executePendingTransactions();
+
+                   } else {
+                       getSupportFragmentManager().beginTransaction().hide(list.get(0))
+                               .show(list.get(1)).commitAllowingStateLoss();
+                       // getSupportFragmentManager(). executePendingTransactions();
+                   }
+
+
+
                 break;
             default:
                 break;
         }
     }
-
-//    private void getBottomNavigationView() {
-//
-//      int[] image = new int[]{R.drawable.ic_favorite_black_24dp,
-//                R.drawable.ic_book_black_24dp};
-////        int[] image = {R.drawable.ic_chevron_left_black_24dp,
-////                R.drawable.ic_chevron_right_black_24dp};
-//       int[] color=new int[]{
-//                ContextCompat.getColor(this, R.color.thirdColor), ContextCompat.getColor(this, R.color.fourthColor)};
-//
-//        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
-//        if (bottomNavigationView != null) {
-//            bottomNavigationView.isWithText(false);
-////            bottomNavigationView.activateTabletMode();
-//            bottomNavigationView.isColoredBackground(true);
-////            bottomNavigationView.willNotRecreate(true);
-//            bottomNavigationView.setTextActiveSize(getResources().getDimension(R.dimen.text_active));
-//            bottomNavigationView.setTextInactiveSize(getResources().getDimension(R.dimen.text_inactive));
-////            bottomNavigationView.setItemActiveColorWithoutColoredBackground(ContextCompat.getColor(this, R.color.firstColor));
-//            bottomNavigationView.setFont(Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/Noh_normal.ttf"));
-//
-//        }
-//
-//        BottomNavigationItem  bottomNavigationItem = new BottomNavigationItem
-//                (getResources().getString(R.string.timetable), color[0], image[0]);
-//        BottomNavigationItem bottomNavigationItem1 = new BottomNavigationItem
-//                (getResources().getString(R.string.reservation_record), color[1], image[1]);
-//
-//        bottomNavigationView.addTab(bottomNavigationItem);
-//
-//        bottomNavigationView.addTab(bottomNavigationItem1);
-////        bottomNavigationView.disableShadow();
-//    }
 
 
     private void getBottomNavigationView() {
@@ -175,12 +152,27 @@ public class MainActivity extends AppCompatActivity {
                 switch (position) {
 
                     case 1:
-                        closeDrawLayout();
-                        startActivity(new Intent(MainActivity.this, MyAccountActivity.class));
+
+                        if(UserManager.getInstance().isLogin()){
+                            closeDrawLayout();
+                            startActivity(new Intent(MainActivity.this, MyAccountActivity.class));
+                        }else{
+                            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                            startActivity(intent);
+                        }
+
                         break;
                     case 2:
-                        startActivity(new Intent(MainActivity.this, BookingHistoryActivity.class));
+
+
+                        if(UserManager.getInstance().isLogin()){
+                            startActivity(new Intent(MainActivity.this, BookingHistoryActivity.class));
+                        }else{
+                            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                            startActivity(intent);
+                        }
                         break;
+
                     case 3:
                         startActivity(new Intent(MainActivity.this, LanguageSelectionActivity.class));
                         break;
@@ -194,31 +186,99 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, RegisterActivity.class));
                         break;
                     case 9:
-                        startActivity(new Intent(MainActivity.this, ModifyPasswordActivity.class));
+
+                        if(UserManager.getInstance().isLogin()){
+                            startActivity(new Intent(MainActivity.this, ModifyPasswordActivity.class));
+                        }else{
+                            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                            startActivity(intent);
+                        }
+
                         break;
                     case 10:
-                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
-                        builder.setTitle(getResources().getString(R.string.hint_for_logout))
-                                .setMessage(getResources().getString(R.string.hint_logout))
-                                .setPositiveButton(getResources().getString(R.string.yes),
-                                        new DialogInterface.OnClickListener() {
 
-                                            @Override
-                                            public void onClick(DialogInterface dialog,
-                                                                int which) {
-                                                dialog.dismiss();
-                                                closeDrawLayout();
-                                            }
-                                        })
-                                .setNegativeButton(getResources().getString(R.string.no),
-                                        new DialogInterface.OnClickListener() {
+                        if(UserManager.getInstance().isLogin()){
+                            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
+                            builder.setTitle(getResources().getString(R.string.hint_for_logout))
+                                    .setMessage(getResources().getString(R.string.hint_logout))
+                                    .setPositiveButton(getResources().getString(R.string.yes),
+                                            new DialogInterface.OnClickListener() {
 
-                                            @Override
-                                            public void onClick(DialogInterface dialog,
-                                                                int which) {
-                                                dialog.dismiss();
-                                            }
-                                        }).show();
+                                                @Override
+                                                public void onClick(DialogInterface dialog,
+                                                                    int which) {
+
+
+                                                    YTRequestParams params = new YTBaseRequestParams(YTBaseRequestParams.PARAM_TYPE_JSON);
+                                                    Logs.e(TAG, ServiceUrlManager.getServiceAbsUrl(ServiceCode.LOGIN_OUT, MainActivity.this));
+                                                    Logs.e(TAG, params.getParamsString());
+                                                    APPRestClient.post(ServiceUrlManager.getServiceAbsUrl(ServiceCode.LOGIN_OUT, MainActivity.this), params,
+                                                            new APPResponseHandler<DoLogin>(DoLogin.class, null) {
+
+                                                                @Override
+                                                                public void onSuccess(DoLogin result) {
+                                                                    waitDialog.dismiss();
+                                                                    closeDrawLayout();
+                                                                    Logs.v(TAG, "onSuccess");
+                                                                    Logs.v(TAG, result.toString());
+
+                                                                    if (result.getSTATUS().equals("1")) {
+                                                                        ToastTools.showShort(getApplicationContext(), result.getMSG());
+                                                                        EventBus.getDefault().post(new SwitchFragmentEvent(5));
+                                                                        UserManager.getInstance().setLogin(false);
+                                                                    }
+
+                                                                }
+
+                                                                @Override
+                                                                public void onFailure(String errorCode, String errorMsg) {
+                                                                    waitDialog.dismiss();
+                                                                    Logs.e(TAG, "onFailure");
+                                                                    Logs.e("Login_errorCode", errorCode);
+
+                                                                    switch (errorCode) {
+                                                                        case "USER_NOT_EXIT":
+                                                                            ToastTools.showShort(getApplicationContext(), errorMsg);
+                                                                            break;
+                                                                        case "PHONE_NOT_EXIT":
+                                                                            ToastTools.showShort(getApplicationContext(), errorMsg);
+                                                                            break;
+                                                                        case "SMS_EORROR_THREE_TIMES"://该手机号码已被锁定，请一小时后重试！
+                                                                            ToastTools.showShort(getApplicationContext(), errorMsg);
+                                                                            break;
+                                                                        default:
+                                                                            ToastTools.showShort(getApplicationContext(), errorMsg);
+                                                                            break;
+                                                                    }
+                                                                }
+
+                                                                @Override
+                                                                public void onFinish() {
+                                                                    Logs.e(TAG, "onFinish");
+                                                                    if (null != waitDialog) {
+                                                                        waitDialog.dismiss();
+                                                                    }
+                                                                }
+
+                                                            }, null);
+                                                    Logs.v(TAG, "发送请求结束");
+
+                                                }
+                                            })
+                                    .setNegativeButton(getResources().getString(R.string.no),
+                                            new DialogInterface.OnClickListener() {
+
+                                                @Override
+                                                public void onClick(DialogInterface dialog,
+                                                                    int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            }).show();
+                        }else{
+                            Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                            startActivity(intent);
+                        }
+
                         break;
                     default:
                         break;
@@ -229,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void addHeadview() {
         LayoutInflater inflater = LayoutInflater.from(this);
-         myView = inflater.inflate(R.layout.nav_header_main, mLvLeftMenu, false);
+        myView = inflater.inflate(R.layout.nav_header_main, mLvLeftMenu, false);
         TextView login = (TextView) myView.findViewById(R.id.tologin);
         login.setText(getResources().getString(R.string.menu_qdl));
         login.setOnClickListener(new View.OnClickListener() {
@@ -269,6 +329,24 @@ public class MainActivity extends AppCompatActivity {
                 addHeadview();
                 adapter = new MenuItemAdapter(this);
                 mLvLeftMenu.setAdapter(adapter);
+            }else if (event.getPosition() == 4) {
+                mLvLeftMenu.removeHeaderView(myView);
+                LayoutInflater inflater = LayoutInflater.from(this);
+                myView = inflater.inflate(R.layout.nav_header_main, mLvLeftMenu, false);
+                TextView login = (TextView) myView.findViewById(R.id.tologin);
+                login.setText(getResources().getString(R.string.logined));
+                login.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+//                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    }
+                });
+                mLvLeftMenu.addHeaderView(myView);
+
+            }else if(event.getPosition() == 5){
+                mLvLeftMenu.removeHeaderView(myView);
+                addHeadview();
             }
 
         }
@@ -302,6 +380,14 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.drawerlayout);
         EventBus.getDefault().register(this);
+
+
+        ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+        dialog.setMessage(this.getString(R.string.progress_load_msg));
+        dialog.setIndeterminate(false);
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(false);
+        waitDialog = dialog;
 
         getBottomNavigationView();
         mLvLeftMenu = (ListView) findViewById(R.id.id_lv_left_menu);
@@ -362,41 +448,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
-
-
-//    private void initCalendarInDialog(String title, int layoutResId) {
-////        dialogView = (CalendarPickerView) LayoutInflater.from(getActivity()).inflate(layoutResId, null, false);
-//        dialogView = (CalendarPickerView) getLayoutInflater().inflate(layoutResId, null, false);
-//        dialogView.init(lastYear.getTime(), nextYear.getTime()) //
-//                .withSelectedDate(new Date());
-//
-//        theDialog = new AlertDialog.Builder(this) //
-//                .setTitle(title)
-//                .setView(dialogView)
-//                .setNeutralButton("确定", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        dialogInterface.dismiss();
-//                    }
-//                })
-//                .create();
-//        theDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-//            @Override
-//            public void onShow(DialogInterface dialogInterface) {
-//                Log.d("manactivity", "onShow: fix the dimens!");
-//                dialogView.fixDialogDimens();
-//            }
-//        });
-//
-////        theDialog.show();
-////        theDialog.dismiss();
-//    }
-//
-//    public void showDialog() {
-//        if (null != theDialog)
-//            theDialog.show();
-//
-//    }
 
 
 }

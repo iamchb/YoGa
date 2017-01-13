@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,22 @@ import android.widget.Toast;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.yitong.yoga.R;
+import com.yitong.yoga.ServiceCode;
+import com.yitong.yoga.UserManager;
 import com.yitong.yoga.activity.BookingDetailActivity;
 import com.yitong.yoga.bean.Curriculum;
+import com.yitong.yoga.bean.DoLogin;
+import com.yitong.yoga.http.APPResponseHandler;
+import com.yitong.yoga.http.APPRestClient;
+import com.yitong.yoga.http.ServiceUrlManager;
+import com.yitong.yoga.http.YTBaseRequestParams;
+import com.yitong.yoga.http.YTRequestParams;
+import com.yitong.yoga.utils.Logs;
+import com.yitong.yoga.utils.ToastTools;
 
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapterViewHolder> {
     private List<Curriculum> list;
@@ -57,8 +70,67 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                                     public void onClick(DialogInterface dialog,
                                                         int which) {
                                         Toast.makeText(context, context.getResources().getString(R.string.reservation_cancel), Toast.LENGTH_SHORT).show();
-                                        list.remove(person);
-                                        notifyDataSetChanged();
+
+
+
+                                        Log.v(TAG, "发送请求开始");
+                                        YTRequestParams params = new YTBaseRequestParams(YTBaseRequestParams.PARAM_TYPE_JSON);
+                                        params.put("uid", UserManager.getInstance().getUserInfo().getAgent_id());
+                                        params.put("id", person.getClass_id());
+                                        params.put("code_id", person.getCode_id());
+
+                                        Logs.e(TAG, ServiceUrlManager.getServiceAbsUrl(ServiceCode.CACEL_ORDER, context));
+                                        Logs.e(TAG, params.getParamsString());
+                                        APPRestClient.post(ServiceUrlManager.getServiceAbsUrl(ServiceCode.CACEL_ORDER, context), params,
+                                                new APPResponseHandler<DoLogin>(DoLogin.class, null) {
+
+                                                    @Override
+                                                    public void onSuccess(DoLogin result) {
+//                                                        waitDialog.dismiss();
+                                                        Logs.v(TAG, "onSuccess");
+                                                        Logs.v(TAG, result.toString());
+
+                                                        if (result.getSTATUS().equals("1")) {
+
+                                                                list.remove(person);
+                                                                notifyDataSetChanged();
+
+                                                        }
+
+                                                    }
+
+                                                    @Override
+                                                    public void onFailure(String errorCode, String errorMsg) {
+//                                                        waitDialog.dismiss();
+                                                        Logs.e(TAG, "onFailure");
+                                                        Logs.e("Login_errorCode", errorCode);
+//                        接口返回{"MSG":"登录密码错误！","STATUS":"YOGA_LOGIN_PASS_FAIL"}
+//                        "MSG":"该账户还没注册，请先注册！","STATUS":"YOGA_ISNOT_REGISTERED"
+                                                        switch (errorCode) {
+                                                            case "YOGA_ISNOT_REGISTERED":
+                                                                ToastTools.showShort(context, errorMsg);
+                                                                break;
+                                                            case "YOGA_LOGIN_PASS_FAIL":
+                                                                ToastTools.showShort(context, errorMsg);
+                                                                break;
+//                            case "SMS_EORROR_THREE_TIMES"://该手机号码已被锁定，请一小时后重试！
+//                                ToastTools.showShort(getApplicationContext(), errorMsg);
+//                                break;
+                                                            default:
+                                                                ToastTools.showShort(context, errorMsg);
+                                                                break;
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onFinish() {
+                                                        Logs.e(TAG, "onFinish");
+//                                                        if (null != waitDialog) {
+//                                                            waitDialog.dismiss();
+//                                                        }
+                                                    }
+
+                                                }, null);
 
                                     }
                                 })
@@ -80,7 +152,69 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 //        holder.booking_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, BookingDetailActivity.class));
+
+
+                // 发送登录请求
+                Log.v(TAG, "发送请求开始");
+                YTRequestParams params = new YTBaseRequestParams(YTBaseRequestParams.PARAM_TYPE_JSON);
+                params.put("uid", UserManager.getInstance().getUserInfo().getAgent_id());
+//                params.put("id", person.getClass_id());
+                params.put("order_id", person.getCode_id());
+
+                Logs.e(TAG, ServiceUrlManager.getServiceAbsUrl(ServiceCode.BOOKING_DETAIL, context));
+                Logs.e(TAG, params.getParamsString());
+                APPRestClient.post(ServiceUrlManager.getServiceAbsUrl(ServiceCode.BOOKING_DETAIL, context), params,
+                        new APPResponseHandler<DoLogin>(DoLogin.class, null) {
+
+                            @Override
+                            public void onSuccess(DoLogin result) {
+//                                                        waitDialog.dismiss();
+                                Logs.v(TAG, "onSuccess");
+                                Logs.v(TAG, result.toString());
+
+                                if (result.getSTATUS().equals("1")) {
+
+                                    Intent intent=new Intent(context, BookingDetailActivity.class);
+
+                                    intent.putExtra("code_id", person.getCode_id());
+                                    context.startActivity(intent);
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(String errorCode, String errorMsg) {
+//                                                        waitDialog.dismiss();
+                                Logs.e(TAG, "onFailure");
+                                Logs.e("Login_errorCode", errorCode);
+//                        接口返回{"MSG":"登录密码错误！","STATUS":"YOGA_LOGIN_PASS_FAIL"}
+//                        "MSG":"该账户还没注册，请先注册！","STATUS":"YOGA_ISNOT_REGISTERED"
+                                switch (errorCode) {
+                                    case "YOGA_ISNOT_REGISTERED":
+                                        ToastTools.showShort(context, errorMsg);
+                                        break;
+                                    case "YOGA_LOGIN_PASS_FAIL":
+                                        ToastTools.showShort(context, errorMsg);
+                                        break;
+//                            case "SMS_EORROR_THREE_TIMES"://该手机号码已被锁定，请一小时后重试！
+//                                ToastTools.showShort(getApplicationContext(), errorMsg);
+//                                break;
+                                    default:
+                                        ToastTools.showShort(context, errorMsg);
+                                        break;
+                                }
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                Logs.e(TAG, "onFinish");
+//                                                        if (null != waitDialog) {
+//                                                            waitDialog.dismiss();
+//                                                        }
+                            }
+
+                        }, null);
             }
         });
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
@@ -14,91 +15,112 @@
         android:layout_height="@dimen/status_padding"
         android:orientation="vertical">
 
-    <RelativeLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/status_view_padding"
+            android:orientation="vertical">
+            <!--android:background="@drawable/bg_top"-->
+            <ImageView
+                android:id="@+id/title_main_iv_dimension_code"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/title_main_txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="YoGa"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+            <!--android:textColor="@color/dark_gray"-->
+            <ImageView
+                android:id="@+id/title_main_img_setting"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/title_main_txt_title"
+                android:padding="5dp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/title_main_img_user"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/u22"
+                android:text="@string/register"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="@dimen/status_view_padding"
-        android:orientation="vertical">
-        <!--android:background="@drawable/bg_top"-->
-        <ImageView
-            android:id="@+id/title_main_iv_dimension_code"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/title_main_txt_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="YoGa"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-        <!--android:textColor="@color/dark_gray"-->
-        <ImageView
-            android:id="@+id/title_main_img_setting"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/title_main_txt_title"
-            android:padding="5dp"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/title_main_img_user"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/u22"
-            android:text="@string/register"
-            android:textSize="12sp"
-            android:textColor="@color/white" />
-
-    </RelativeLayout>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="80dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/u18"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp">
+        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:src="@drawable/u27" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginLeft="15dp"
-            android:background="@null"
-            android:hint="@string/input_phone_num"
-            android:maxLength="13"
-            android:textCursorDrawable="@null"
-            android:textSize="15sp" />
+            android:background="@drawable/u18"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:src="@drawable/u27" />
+
+            <EditText
+                android:id="@+id/input_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:background="@null"
+                android:hint="@string/input_phone_num"
+                android:inputType="phone"
+                android:maxLength="13"
+                android:textCursorDrawable="@null"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/spinner"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/u18"
+            app:ms_dropdown_height="wrap_content"
+            app:ms_dropdown_max_height="350dp" />
     </LinearLayout>
 
-
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:background="@drawable/u18"
         android:orientation="horizontal"
         android:paddingLeft="10dp">
@@ -106,11 +128,11 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-
             android:layout_gravity="center"
             android:src="@drawable/u28" />
 
         <EditText
+            android:id="@+id/input_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -119,6 +141,7 @@
             android:background="@null"
             android:gravity="left"
             android:hint="@string/input_pwd"
+            android:inputType="textPassword"
             android:maxLength="11"
             android:textCursorDrawable="@null"
             android:textSize="15sp" />
@@ -126,7 +149,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:text="@string/forget_pwd" />
@@ -145,4 +167,4 @@
         android:text="@string/login"
         android:textColor="@color/white"
         android:textSize="20sp" />
-    </LinearLayout>
+</LinearLayout>

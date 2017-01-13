@@ -13,14 +13,29 @@
         android:id="@+id/titleLay"
         layout="@layout/title_main" />
 
-    <TextView
-        android:id="@+id/booking_number"
-        android:layout_marginTop="20dp"
+
+    <LinearLayout
         android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="18sp"
-        android:text="預訂編號： 2239 5689 0001" />
+        android:layout_marginLeft="15dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:text="預訂編號： " />
+
+        <TextView
+            android:id="@+id/booking_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="" />
+
+    </LinearLayout>
+
 
     <ImageView
         android:layout_marginTop="20dp"

@@ -15,7 +15,7 @@ import java.util.Locale;
 public class ServiceUrlManager {
 
 	// 接口服务器请求基地址
-	private static String SERVICE_BASE_URL = "";
+	private static String SERVICE_BASE_URL = "http://10.10.10.71:8088/YogaApp";
 
 	// 网络资源服务器请求基地址
 	private static String RESOURCE_BASE_URL = "";
@@ -75,18 +75,24 @@ public class ServiceUrlManager {
 		Logs.e("TAG",country);
 		tag=country.equals("CN");
 		if (relativeUrl.startsWith("/")) {
-			if (tag) {
-				absoluteUrl = (SERVICE_BASE_URL + relativeUrl+"?local=1");
-			} else {
-				absoluteUrl = (SERVICE_BASE_URL + relativeUrl+"?local=0");
-			}
+			absoluteUrl = (SERVICE_BASE_URL + relativeUrl);
+
+//			if (tag) {
+////				absoluteUrl = (SERVICE_BASE_URL + relativeUrl+"?local=1");
+//				absoluteUrl = (SERVICE_BASE_URL + relativeUrl);
+//			} else {
+////				absoluteUrl = (SERVICE_BASE_URL + relativeUrl+"?local=0");
+//				absoluteUrl = (SERVICE_BASE_URL + relativeUrl);
+//			}
 
 		} else {
-			if (tag) {
-				absoluteUrl = (SERVICE_BASE_URL + File.separator + relativeUrl+"?local=1");
-			} else {
-				absoluteUrl = (SERVICE_BASE_URL + File.separator + relativeUrl+"?local=0");
-			}
+
+			absoluteUrl = (SERVICE_BASE_URL + File.separator + relativeUrl);
+//			if (tag) {
+//				absoluteUrl = (SERVICE_BASE_URL + File.separator + relativeUrl+"?local=1");
+//			} else {
+//				absoluteUrl = (SERVICE_BASE_URL + File.separator + relativeUrl+"?local=0");
+//			}
 
 		}
 		return absoluteUrl;

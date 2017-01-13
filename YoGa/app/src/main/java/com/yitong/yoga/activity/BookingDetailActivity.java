@@ -1,5 +1,6 @@
 package com.yitong.yoga.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -21,7 +22,7 @@ public class BookingDetailActivity extends AppCompatActivity {
         TextView booking_number = (TextView)findViewById(R.id.booking_number);
         title.setText(getResources().getString(R.string.booking_detail));
 
-        booking_number.setText(getResources().getString(R.string.booking_number));
+
         titleLay.setBackgroundColor(getResources().getColor(R.color.fourthColor));
 
 
@@ -34,5 +35,10 @@ public class BookingDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Intent intent=getIntent();
+        String code_id=intent.getStringExtra("code_id");
+//        booking_number.setText(getResources().getString(R.string.booking_number));
+        booking_number.setText(code_id);
     }
 }
