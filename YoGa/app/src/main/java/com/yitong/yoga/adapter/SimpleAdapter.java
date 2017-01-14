@@ -28,6 +28,7 @@ import com.yitong.yoga.http.ServiceUrlManager;
 import com.yitong.yoga.http.YTBaseRequestParams;
 import com.yitong.yoga.http.YTRequestParams;
 import com.yitong.yoga.utils.Logs;
+import com.yitong.yoga.utils.NoDoubleClickListener;
 import com.yitong.yoga.utils.ToastTools;
 
 import java.util.List;
@@ -57,9 +58,9 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         holder. timeTle.setText(context.getResources().getString(R.string.reservation_time));
         holder. coachName.setText(context.getResources().getString(R.string.reservation_jl));
         holder.curriculumName.setText(context.getResources().getString(R.string.reservation_money));
-        holder.cancel.setOnClickListener(new View.OnClickListener() {
+        holder.cancel.setOnClickListener(new NoDoubleClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onNoDoubleClick(View v) {
                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
                 builder.setTitle(context.getResources().getString(R.string.hint_for_logout))
                         .setMessage(context.getResources().getString(R.string.reservation_hit))
@@ -148,10 +149,10 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
             }
         });
 
-        holder.contentView.setOnClickListener(new View.OnClickListener() {
+        holder.contentView.setOnClickListener(new NoDoubleClickListener() {
 //        holder.booking_details.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onNoDoubleClick(View v) {
 
 
                 // 发送登录请求

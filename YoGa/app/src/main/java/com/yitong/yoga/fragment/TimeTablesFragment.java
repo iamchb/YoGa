@@ -40,6 +40,7 @@ import com.yitong.yoga.stickyListHeaders.StickyListHeadersListView;
 import com.yitong.yoga.stickyListHeaders.StickylistAdapter;
 import com.yitong.yoga.utils.DataUtils;
 import com.yitong.yoga.utils.Logs;
+import com.yitong.yoga.utils.NoDoubleClickListener;
 import com.yitong.yoga.utils.StringTools;
 import com.yitong.yoga.utils.ToastTools;
 
@@ -102,9 +103,10 @@ public class TimeTablesFragment extends Fragment {
             });
 
 
-            ivUser.setOnClickListener(new View.OnClickListener() {
+            ivUser.setOnClickListener(new NoDoubleClickListener() {
+
                 @Override
-                public void onClick(View v) {
+                public void onNoDoubleClick(View v) {
 //                    ((MainActivity) getActivity()).showDialog();
                     waitDialog.show();
                     Log.v(TAG, "发送请求开始");
@@ -380,7 +382,7 @@ public class TimeTablesFragment extends Fragment {
                                     }else{
                                         ap_pm="pm";
                                     }
-                                    StickyListBean bean = new StickyListBean(i, chineseNumber[week-1]+"  "+START_DATE, CLASS_NAME, COACH_NAME, CLASS_ADDR, START_TIME, CLASS_ID+"","pm");
+                                    StickyListBean bean = new StickyListBean(i, chineseNumber[week-1]+"  "+START_DATE, CLASS_NAME, COACH_NAME, CLASS_ADDR, START_TIME, CLASS_ID+"",ap_pm);
                                     list.add(bean);
 
                                     if(null!=adapter){

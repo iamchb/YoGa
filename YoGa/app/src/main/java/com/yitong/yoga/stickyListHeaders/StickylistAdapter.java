@@ -21,6 +21,7 @@ import com.yitong.yoga.http.ServiceUrlManager;
 import com.yitong.yoga.http.YTBaseRequestParams;
 import com.yitong.yoga.http.YTRequestParams;
 import com.yitong.yoga.utils.Logs;
+import com.yitong.yoga.utils.NoDoubleClickListener;
 import com.yitong.yoga.utils.ToastTools;
 
 import java.util.ArrayList;
@@ -82,9 +83,9 @@ public class StickylistAdapter extends BaseAdapter implements
         mHolder.class_time.setText(info.getClassTime());
         mHolder.class_time_flag.setText(info.getClassTimeFlag());
 
-        convertView.setOnClickListener(new View.OnClickListener() {
+        convertView.setOnClickListener(new NoDoubleClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onNoDoubleClick(View v) {
 //                context.startActivity(new Intent(context, CourseIntroductionActivity.class));
 
                 if(UserManager.getInstance().isLogin()){

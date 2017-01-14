@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.andview.refreshview.XRefreshView;
+import com.andview.refreshview.listener.OnBottomLoadMoreTime;
 import com.yitong.yoga.R;
 import com.yitong.yoga.ServiceCode;
 import com.yitong.yoga.UserManager;
@@ -32,7 +35,9 @@ import com.yitong.yoga.http.APPRestClient;
 import com.yitong.yoga.http.ServiceUrlManager;
 import com.yitong.yoga.http.YTBaseRequestParams;
 import com.yitong.yoga.http.YTRequestParams;
+import com.yitong.yoga.smileyloadingview.SmileyHeaderView;
 import com.yitong.yoga.utils.Logs;
+import com.yitong.yoga.utils.NoDoubleClickListener;
 import com.yitong.yoga.utils.StringTools;
 import com.yitong.yoga.utils.ToastTools;
 
@@ -54,7 +59,6 @@ public class ReservationRecordFragment extends Fragment {
 
 
     protected View contentView = null;
-    protected boolean isFirstLoad = true;
     private SimpleAdapter mAdapter;
     private RecyclerView recyclerView;
     //    Toolbar mToolbar;
@@ -62,7 +66,11 @@ public class ReservationRecordFragment extends Fragment {
     private ImageView ivDimensCode;// 二维码
     private ImageView ivUser;// 个人中心
     TextView title;
+    private XRefreshView refreshView;
     private Dialog waitDialog;
+    private final int mPinnedTime = 1000;
+//    protected View contentView = null;
+    protected boolean isFirstLoad = true;
 
 
     @Override
@@ -83,15 +91,82 @@ public class ReservationRecordFragment extends Fragment {
             ivDimensCode.setImageResource(R.drawable.ic_dehaze_black_24dp);
             ivDimensCode.setVisibility(View.VISIBLE);
 
+            refreshView = (XRefreshView) contentView.findViewById(R.id.custom_view);
+            refreshView.setPullLoadEnable(false);
+//            refreshView.setAutoRefresh(true);
+            refreshView.setPinnedTime(mPinnedTime);
+            refreshView.setCustomHeaderView(new SmileyHeaderView(getActivity()));
+//            refreshView.setCustomHeaderView(new CustomHeader(getActivity(), mPinnedTime));
+            refreshView.setMoveFootWhenDisablePullLoadMore(false);
+
+//            refreshView.setOnTopRefreshTime(new OnTopRefreshTime() {
+//
+//                @Override
+//                public boolean isTop() {
+////                    if (stickyLv.getFirstVisiblePosition() == 0) {
+////                        View firstVisibleChild = stickyLv.getListChildAt(0);
+////                        return firstVisibleChild.getTop() >= 0;
+////                    }
+//                    return true;
+//                }
+//            });
+
+            refreshView.setXRefreshViewListener(new XRefreshView.SimpleXRefreshListener() {
+
+                @Override
+                public void onRefresh() {
+
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            refreshView.stopRefresh();
+                        }
+                    }, 2000);
+
+                    personList.clear();
+                    mAdapter =null;
+                    setData(UserManager.getInstance().getUserInfo().getAgent_id(),null);
+                }
+
+                @Override
+                public void onLoadMore(boolean isSilence) {
+
+                    new Handler().postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            refreshView.stopLoadMore();
+//                            refreshView.setLoadComplete(true);
+                        }
+                    }, 500);
+                }
+            });
+
+            refreshView.setOnBottomLoadMoreTime(new OnBottomLoadMoreTime() {
+
+                @Override
+                public boolean isBottom() {
+//                    if (stickyLv.getLastVisiblePosition() == mTotalItemCount - 1) {
+//                        View lastChild = stickyLv.getListChildAt(stickyLv.getListChildCount() - 1);
+//                        return (lastChild.getBottom() + stickyLv.getPaddingBottom()) <= stickyLv.getMeasuredHeight();
+//                    }
+                    return false;
+                }
+            });
+
+
+
+
             ivDimensCode.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ((MainActivity) getActivity()).openOrClose();
                 }
             });
-            ivUser.setOnClickListener(new View.OnClickListener() {
+            ivUser.setOnClickListener(new NoDoubleClickListener() {
                 @Override
-                public void onClick(View v) {
+                public void onNoDoubleClick(View v) {
 
                     waitDialog.show();
                     Log.v(TAG, "发送请求开始");
@@ -220,6 +295,9 @@ public class ReservationRecordFragment extends Fragment {
                         Logs.v(TAG, "onSuccess");
                         Logs.v(TAG, result.toString());
 
+//                        if(refreshView.mPullRefreshing){
+//                            refreshView.stopRefresh();
+//                        }
                         if (result.getSTATUS().equals("1")) {
 //                            DoLogin login=result;
 //                            EventBus.getDefault().post(new SwitchFragmentEvent(4));

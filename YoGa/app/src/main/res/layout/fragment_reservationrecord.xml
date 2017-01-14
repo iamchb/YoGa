@@ -18,12 +18,18 @@
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="match_parent"-->
     <!--android:background="#fff">-->
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/my_recyclerview"
+    <com.andview.refreshview.XRefreshView
+        android:id="@+id/custom_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FAFAFf" />
 
-    <!--</com.andview.refreshview.XRefreshView>-->
+        >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FAFAFf" />
+
+    </com.andview.refreshview.XRefreshView>
 </LinearLayout>

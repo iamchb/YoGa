@@ -65,7 +65,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         // 请求启动页
-        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.71:8088/YogaApp");//MegStarCRM
+//        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.71:8088/YogaApp");//MegStarCRM
+        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.201:7080/YogaApp");//MegStarCRM
 
 //		CrashHandler.getInstance().init(this);
         LeakCanary.install(this);
