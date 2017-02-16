@@ -92,6 +92,9 @@ public class StickylistAdapter extends BaseAdapter implements
 
                     YTRequestParams params = new YTBaseRequestParams(YTBaseRequestParams.PARAM_TYPE_JSON);
                     params.put("Id", info.getId());
+                    if(null!=UserManager.getInstance().getUserInfo().getAgent_id()){
+                        params.put("uid", UserManager.getInstance().getUserInfo().getAgent_id());
+                    }
                     Logs.e(TAG, ServiceUrlManager.getServiceAbsUrl(ServiceCode.CURRI_DETAIL, context));
                     Logs.e(TAG, params.getParamsString());
                     APPRestClient.post(ServiceUrlManager.getServiceAbsUrl(ServiceCode.CURRI_DETAIL, context), params,

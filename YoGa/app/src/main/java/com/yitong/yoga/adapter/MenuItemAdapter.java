@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.yitong.yoga.R;
+import com.yitong.yoga.UserManager;
 import com.yitong.yoga.bean.LvMenuItem;
 
 import java.util.ArrayList;
@@ -35,19 +36,37 @@ public  class MenuItemAdapter extends BaseAdapter
         mContext = context;
 
         mIconSize = context.getResources().getDimensionPixelSize(R.dimen.drawer_icon_size);
-        mItems=new ArrayList<>(
-                Arrays.asList(
-                        new LvMenuItem(R.drawable.ic_menu_camera, mContext.getResources().getString(R.string.menu_wdzh)),
-                        new LvMenuItem(R.drawable.ic_menu_gallery,mContext.getResources().getString(R.string.menu_wdls)),
-                        new LvMenuItem(R.drawable.ic_menu_manage,mContext.getResources().getString(R.string.menu_yyxz)),
-                        new LvMenuItem(R.drawable.ic_call_black_24dp, mContext.getResources().getString(R.string.menu_lxwm)),
-                        new LvMenuItem(R.drawable.ic_menu_send, mContext.getResources().getString(R.string.menu_gywm)),
-                        new LvMenuItem(),
-                        new LvMenuItem(mContext.getResources().getString(R.string.menu_zhgl)),
-                        new LvMenuItem(R.drawable.ic_menu_share, mContext.getResources().getString(R.string.menu_zc)),
-                        new LvMenuItem(R.drawable.ic_menu_manage,mContext.getResources().getString(R.string.menu_xgmm)),
-                        new LvMenuItem(R.drawable.ic_menu_slideshow, mContext.getResources().getString(R.string.menu_dc))
-                ));
+
+        if(UserManager.getInstance().isLogin()){
+            mItems=new ArrayList<>(
+                    Arrays.asList(
+                            new LvMenuItem(R.drawable.ic_menu_camera, mContext.getResources().getString(R.string.menu_wdzh)),
+                            new LvMenuItem(R.drawable.ic_menu_gallery,mContext.getResources().getString(R.string.menu_wdls)),
+//                            new LvMenuItem(R.drawable.ic_menu_manage,mContext.getResources().getString(R.string.menu_yyxz)),
+                            new LvMenuItem(R.drawable.ic_call_black_24dp, mContext.getResources().getString(R.string.menu_lxwm)),
+                            new LvMenuItem(R.drawable.ic_menu_send, mContext.getResources().getString(R.string.menu_gywm)),
+                            new LvMenuItem(),
+                            new LvMenuItem(mContext.getResources().getString(R.string.menu_zhgl)),
+                            new LvMenuItem(R.drawable.ic_menu_share, mContext.getResources().getString(R.string.menu_zc)),
+                            new LvMenuItem(R.drawable.ic_menu_manage,mContext.getResources().getString(R.string.menu_xgmm)),
+                            new LvMenuItem(R.drawable.ic_menu_slideshow, mContext.getResources().getString(R.string.menu_dc))
+                    ));
+        }else{
+            mItems=new ArrayList<>(
+                    Arrays.asList(
+                            new LvMenuItem(R.drawable.ic_menu_camera, mContext.getResources().getString(R.string.menu_wdzh)),
+                            new LvMenuItem(R.drawable.ic_menu_gallery,mContext.getResources().getString(R.string.menu_wdls)),
+//                            new LvMenuItem(R.drawable.ic_menu_manage,mContext.getResources().getString(R.string.menu_yyxz)),
+                            new LvMenuItem(R.drawable.ic_call_black_24dp, mContext.getResources().getString(R.string.menu_lxwm)),
+                            new LvMenuItem(R.drawable.ic_menu_send, mContext.getResources().getString(R.string.menu_gywm)),
+                            new LvMenuItem(),
+                            new LvMenuItem(mContext.getResources().getString(R.string.menu_zhgl)),
+                            new LvMenuItem(R.drawable.ic_menu_share, mContext.getResources().getString(R.string.menu_zc)),
+                            new LvMenuItem(R.drawable.ic_menu_manage,mContext.getResources().getString(R.string.menu_xgmm))
+                    ));
+
+        }
+
     }
 
 

@@ -69,12 +69,12 @@ public class CalendarPickerActivity extends AppCompatActivity {
                 dates.add(date);
             }
 //            new Date(System.currentTimeMillis() - 48 * 60 * 60)
-            calendar.init(new Date(), nextYear.getTime()) //
+            calendar.init(lastYear.getTime(), nextYear.getTime()) //
                     .inMode(CalendarPickerView.SelectionMode.SINGLE) //
                     .withHighlightedDates(dates)
                     .withSelectedDate(new Date());
         } else {
-            calendar.init(new Date(), nextYear.getTime()) //
+            calendar.init(lastYear.getTime(), nextYear.getTime()) //
                     .inMode(CalendarPickerView.SelectionMode.SINGLE) //
                     .withSelectedDate(new Date());
         }

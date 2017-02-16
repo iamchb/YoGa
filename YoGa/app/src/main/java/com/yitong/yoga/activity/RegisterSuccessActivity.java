@@ -21,7 +21,7 @@ public class RegisterSuccessActivity extends AppCompatActivity {
 
         RelativeLayout titleLay = (RelativeLayout) findViewById(R.id.titleLay);
         TextView title = (TextView) titleLay.findViewById(R.id.title_main_txt_title);
-        title.setText(getResources().getString(R.string.set_pwd));
+        title.setText(getResources().getString(R.string.register));
         titleLay.setBackgroundColor(getResources().getColor(R.color.thirdColor));
 
 

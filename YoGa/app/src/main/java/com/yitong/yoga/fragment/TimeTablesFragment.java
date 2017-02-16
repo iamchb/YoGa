@@ -15,17 +15,20 @@ import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.listener.OnBottomLoadMoreTime;
 import com.andview.refreshview.listener.OnTopRefreshTime;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+import com.weavey.loading.lib.LoadingLayout;
 import com.yitong.yoga.MyApplication;
 import com.yitong.yoga.R;
 import com.yitong.yoga.ServiceCode;
 import com.yitong.yoga.activity.CalendarPickerActivity;
 import com.yitong.yoga.activity.MainActivity;
 import com.yitong.yoga.bean.DateBean;
+import com.yitong.yoga.bean.FreshTimeTable;
 import com.yitong.yoga.bean.FreshTimeTableWithCalendar;
 import com.yitong.yoga.bean.SwitchFragmentEvent;
 import com.yitong.yoga.http.APPResponseHandler;
@@ -76,6 +79,7 @@ public class TimeTablesFragment extends Fragment {
     TextView title;
     private static final String TAG = "TimeTablesFragment";
     private Dialog waitDialog;
+    private LoadingLayout loading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -99,6 +103,16 @@ public class TimeTablesFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     ((MainActivity) getActivity()).openOrClose();
+                }
+            });
+
+            loading = (LoadingLayout) contentView.findViewById(R.id.loading);
+            loading.setLoadingPage(R.layout.define_loading_page).setOnReloadListener(new LoadingLayout.OnReloadListener() {
+
+                @Override
+                public void onReload(View v) {
+
+                    Toast.makeText(getActivity(), "重试", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -128,13 +142,16 @@ public class TimeTablesFragment extends Fragment {
 
 
                                         ArrayList<String> dates = new ArrayList<>();
-                                        for (int i = 0; i <result.getLIST().size(); i++) {
+                                        for (int i = 0; i < result.getLIST().size(); i++) {
                                             dates.add(result.getLIST().get(i).getSTART_DATE());
                                         }
                                         Intent intent = new Intent(getActivity(), CalendarPickerActivity.class);
-                                        intent.putStringArrayListExtra("date",dates);
+                                        intent.putStringArrayListExtra("date", dates);
                                         intent.putExtra("type", "1");
                                         getActivity().startActivity(intent);
+//                                        }
+
+
                                     }
 
                                 }
@@ -209,7 +226,10 @@ public class TimeTablesFragment extends Fragment {
                 public boolean isTop() {
                     if (stickyLv.getFirstVisiblePosition() == 0) {
                         View firstVisibleChild = stickyLv.getListChildAt(0);
-                        return firstVisibleChild.getTop() >= 0;
+
+                        if (null != firstVisibleChild) {
+                            return firstVisibleChild.getTop() >= 0;
+                        }
                     }
                     return false;
                 }
@@ -221,7 +241,10 @@ public class TimeTablesFragment extends Fragment {
                 public boolean isBottom() {
                     if (stickyLv.getLastVisiblePosition() == mTotalItemCount - 1) {
                         View lastChild = stickyLv.getListChildAt(stickyLv.getListChildCount() - 1);
-                        return (lastChild.getBottom() + stickyLv.getPaddingBottom()) <= stickyLv.getMeasuredHeight();
+
+                        if (null != lastChild) {
+                            return (lastChild.getBottom() + stickyLv.getPaddingBottom()) <= stickyLv.getMeasuredHeight();
+                        }
                     }
                     return false;
                 }
@@ -250,14 +273,14 @@ public class TimeTablesFragment extends Fragment {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
+
+                            list.clear();
+                            getData("0", null);
+                            spinner.setSelectedIndex(0);
                             refreshView.stopRefresh();
                         }
                     }, 2000);
 
-//                    list.clear();
-//                    initData();
-//                    adapter = new StickylistAdapter(getActivity(), list);
-//                    stickyLv.setAdapter(adapter);
                 }
 
                 @Override
@@ -279,7 +302,7 @@ public class TimeTablesFragment extends Fragment {
                 public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
 
                     list.clear();
-                    getData(position+"",null);
+                    getData(position + "", null);
 
 //                    adapter = new StickylistAdapter(getActivity(), list);
 //                    stickyLv.setAdapter(adapter);
@@ -301,6 +324,7 @@ public class TimeTablesFragment extends Fragment {
     String YM = null;
     String content = null;
     String chineseNumber[] = {"星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"};
+
     //        String EnglishNumber[] = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     private void initData() {
         Log.e("week_language", MyApplication.Language + "");
@@ -330,7 +354,7 @@ public class TimeTablesFragment extends Fragment {
     }
 
     private void getData(String type, String date) {
-        waitDialog.show();
+//        waitDialog.show();
         YTRequestParams params = new YTBaseRequestParams(YTBaseRequestParams.PARAM_TYPE_JSON);
         params.put("type", type);
         if (!StringTools.isEmpty(date) && type.equals("4")) {
@@ -345,7 +369,7 @@ public class TimeTablesFragment extends Fragment {
                 new AppJSResponseHandler() {
                     @Override
                     public void onSuccess(String result, String successFunc) {
-                        waitDialog.dismiss();
+//                        waitDialog.dismiss();
                         Logs.v(TAG, "onSuccess");
                         Logs.v(TAG, result);
 
@@ -357,43 +381,48 @@ public class TimeTablesFragment extends Fragment {
                             JSONObject object = new JSONObject(result);
                             JSONArray array = object.getJSONArray("LIST");
                             Logs.v(TAG, array.toString());
-                            for (int i = 0; i < array.length(); i++) {
-                                JSONObject jsonObject = array.getJSONObject(i);
-                                String date = jsonObject.getString("START_DATE");
-                                JSONArray array1 = jsonObject.getJSONArray(date);
-                                for (int j = 0; j < array1.length(); j++) {
 
-                                    JSONObject object1 = array1.getJSONObject(j);
-                                    String CLASS_ADDR = object1.getString("CLASS_ADDR");
-                                    int CLASS_ID = object1.getInt("CLASS_ID");
-                                    String CLASS_NAME = object1.getString("CLASS_NAME");
-                                    String COACH_NAME = object1.getString("COACH_NAME");
-                                    String START_DATE = object1.getString("START_DATE");
-                                   int week= DataUtils.dayForWeek(START_DATE);
-                                    Logs.v(TAG, week+"");
-                                    String START_TIME = object1.getString("START_TIME");
-                                    GregorianCalendar ca = new GregorianCalendar();
-                                    String for_split[]=START_TIME.split(":");
-                                    Logs.v(TAG, for_split[0]);
-                                    String ap_pm;
-                                    int time=Integer.parseInt(for_split[0]);
-                                    if(time>12){
-                                        ap_pm="am";
-                                    }else{
-                                        ap_pm="pm";
-                                    }
-                                    StickyListBean bean = new StickyListBean(i, chineseNumber[week-1]+"  "+START_DATE, CLASS_NAME, COACH_NAME, CLASS_ADDR, START_TIME, CLASS_ID+"",ap_pm);
-                                    list.add(bean);
+                            if (array.length() <= 0) {
+                                loading.setStatus(LoadingLayout.Empty);//无数据
 
-                                    if(null!=adapter){
-                                        adapter.notifyDataSetChanged();
-                                    }else {
-                                        adapter = new StickylistAdapter(getActivity(), list);
-                                        stickyLv.setAdapter(adapter);
+                            } else {
+                                for (int i = 0; i < array.length(); i++) {
+                                    JSONObject jsonObject = array.getJSONObject(i);
+                                    String date = jsonObject.getString("START_DATE");
+                                    JSONArray array1 = jsonObject.getJSONArray(date);
+                                    for (int j = 0; j < array1.length(); j++) {
+
+                                        JSONObject object1 = array1.getJSONObject(j);
+                                        String CLASS_ADDR = object1.getString("CLASS_ADDR");
+                                        int CLASS_ID = object1.getInt("CLASS_ID");
+                                        String CLASS_NAME = object1.getString("CLASS_NAME");
+                                        String COACH_NAME = object1.getString("COACH_NAME");
+                                        String START_DATE = object1.getString("START_DATE");
+                                        int week = DataUtils.dayForWeek(START_DATE);
+                                        Logs.v(TAG, week + "");
+                                        String START_TIME = object1.getString("START_TIME");
+                                        GregorianCalendar ca = new GregorianCalendar();
+                                        String for_split[] = START_TIME.split(":");
+                                        Logs.v(TAG, for_split[0]);
+                                        String ap_pm;
+                                        int time = Integer.parseInt(for_split[0]);
+                                        if (time > 12) {
+                                            ap_pm = "am";
+                                        } else {
+                                            ap_pm = "pm";
+                                        }
+                                        StickyListBean bean = new StickyListBean(i, chineseNumber[week - 1] + "  " + START_DATE, CLASS_NAME, COACH_NAME, CLASS_ADDR, START_TIME, CLASS_ID + "", ap_pm);
+                                        list.add(bean);
+                                        loading.setStatus(LoadingLayout.Success);
+                                        if (null != adapter) {
+                                            adapter.notifyDataSetChanged();
+                                        } else {
+                                            adapter = new StickylistAdapter(getActivity(), list);
+                                            stickyLv.setAdapter(adapter);
+                                        }
                                     }
                                 }
                             }
-
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -404,7 +433,7 @@ public class TimeTablesFragment extends Fragment {
 
                     @Override
                     public void onFailure(int errorCode, String failureFunc) {
-                        waitDialog.dismiss();
+//                        waitDialog.dismiss();
                         Logs.e(TAG, "onFailure");
                         Logs.e(TAG, errorCode + "");
                         ToastTools.showShort(getActivity(), failureFunc);
@@ -436,10 +465,10 @@ public class TimeTablesFragment extends Fragment {
 
         if (null != event) {
 
-            if (!StringTools.isEmpty(event.getDate())&&event.getType().equals("1")) {
+            if (!StringTools.isEmpty(event.getDate()) && event.getType().equals("1")) {
                 Log.e("TimeTablesFragment", event.getDate());
                 list.clear();
-                 getData("4",event.getDate());
+                getData("4", event.getDate());
 //                adapter = new StickylistAdapter(getActivity(), list);
 //                stickyLv.setAdapter(adapter);
             }
@@ -448,6 +477,23 @@ public class TimeTablesFragment extends Fragment {
 
     }
 
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void FreshWithCalendar(FreshTimeTable event) {
+
+        if (null != event) {
+
+            if (!StringTools.isEmpty(event.getFlag()) && event.getFlag().equals("10")) {
+                Log.e("TimeTablesFragment", event.getFlag());
+                list.clear();
+                initData();
+                adapter = new StickylistAdapter(getActivity(), list);
+                stickyLv.setAdapter(adapter);
+            }
+
+        }
+
+    }
 
     @Override
     public void onDestroy() {

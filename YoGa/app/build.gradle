@@ -62,4 +62,5 @@ dependencies {
 //    compile project(':BottomNavigationViewLibrary')
 //    compile 'com.roughike:bottom-bar:2.0.2'
     compile 'me.majiajie:pager-bottom-tab-strip:1.0.0'
+    compile 'com.lai.weavey:loadinglayout:1.3.1'//view的各种状态
 }

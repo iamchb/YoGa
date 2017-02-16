@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
 import com.yitong.yoga.R;
@@ -70,7 +69,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                                     @Override
                                     public void onClick(DialogInterface dialog,
                                                         int which) {
-                                        Toast.makeText(context, context.getResources().getString(R.string.reservation_cancel), Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(context, context.getResources().getString(R.string.reservation_cancel), Toast.LENGTH_SHORT).show();
 
 
 
@@ -158,7 +157,9 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                 // 发送登录请求
                 Log.v(TAG, "发送请求开始");
                 YTRequestParams params = new YTBaseRequestParams(YTBaseRequestParams.PARAM_TYPE_JSON);
-                params.put("uid", UserManager.getInstance().getUserInfo().getAgent_id());
+                if(null!=UserManager.getInstance().getUserInfo().getAgent_id()){
+                    params.put("uid", UserManager.getInstance().getUserInfo().getAgent_id());
+                }
 //                params.put("id", person.getClass_id());
                 params.put("order_id", person.getCode_id());
 

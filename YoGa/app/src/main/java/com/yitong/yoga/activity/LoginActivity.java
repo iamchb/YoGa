@@ -158,8 +158,13 @@ public class LoginActivity extends AppCompatActivity {
         // 发送登录请求
         Log.v(TAG, "发送请求开始");
         YTRequestParams params = new YTBaseRequestParams(YTBaseRequestParams.PARAM_TYPE_JSON);
-        params.put("area_code", areaCode);
-        params.put("phone_number", account);
+
+        if(areaCode.equals("email")){
+            params.put("email", account);
+        }else{
+            params.put("area_code", areaCode);
+            params.put("phone_number", account);
+        }
 //        params.put("email", AndroidUtil.getDeviceUUID(this));//设备id
         params.put("yoga_pass", passWord);//设备类型
         Logs.e(TAG, areaCode + "---" + account);

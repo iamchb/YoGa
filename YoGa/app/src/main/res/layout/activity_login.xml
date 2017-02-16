@@ -97,8 +97,8 @@
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:hint="@string/input_phone_num"
-                android:inputType="phone"
-                android:maxLength="13"
+                android:inputType="text"
+                android:maxLength="18"
                 android:textCursorDrawable="@null"
                 android:textSize="15sp" />
 
@@ -146,12 +146,12 @@
             android:textCursorDrawable="@null"
             android:textSize="15sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:text="@string/forget_pwd" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:text="@string/forget_pwd" />-->
     </LinearLayout>
 
 

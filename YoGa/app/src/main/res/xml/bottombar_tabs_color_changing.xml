@@ -3,12 +3,12 @@
     <tab
         id="@+id/tab_recents"
         icon="@drawable/ic_favorite_black_24dp"
-        title="Recents"
+        title="@string/timetable"
         barColorWhenSelected="@color/thirdColor" />
     <tab
         id="@+id/tab_favorites"
         icon="@drawable/ic_book_black_24dp"
-        title="Favorites"
+        title="@string/reservation_record"
         barColorWhenSelected="@color/fourthColor" />
     <!--<tab-->
         <!--id="@+id/tab_nearby"-->

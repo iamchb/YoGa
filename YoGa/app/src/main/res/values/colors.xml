@@ -9,6 +9,7 @@
     <color name="thirdColor">#FF5722</color>
     <color name="fourthColor">#4CAF50</color>
     <color name="white">#FFFFFF</color>
+    <color name="gray">#F7F7F7</color>
 
     <!-- 暗灰色 -->
     <color name="dark_gray">#ff585858</color>

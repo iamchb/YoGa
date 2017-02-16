@@ -15,6 +15,7 @@ import com.yitong.yoga.R;
 import com.yitong.yoga.ServiceCode;
 import com.yitong.yoga.UserManager;
 import com.yitong.yoga.bean.DoLogin;
+import com.yitong.yoga.bean.SwitchFragmentEvent;
 import com.yitong.yoga.http.APPResponseHandler;
 import com.yitong.yoga.http.APPRestClient;
 import com.yitong.yoga.http.ServiceUrlManager;
@@ -22,6 +23,8 @@ import com.yitong.yoga.http.YTBaseRequestParams;
 import com.yitong.yoga.http.YTRequestParams;
 import com.yitong.yoga.utils.Logs;
 import com.yitong.yoga.utils.ToastTools;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -138,6 +141,7 @@ public class CourseIntroductionActivity extends AppCompatActivity {
                                         if (result.getSTATUS().equals("1")) {
 //                            DoLogin login=result;
                                             ToastTools.showShort(getApplicationContext(), result.getMSG());
+                                            EventBus.getDefault().post(new SwitchFragmentEvent(4));
                                             finish();
                                         }
 

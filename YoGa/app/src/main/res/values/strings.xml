@@ -147,4 +147,8 @@ Pure Yoga在亞洲各個城市，包括香港、上海、新加坡與臺北的�
 
 	<string name="login_immediately">立即登錄</string>
 	<string name="login_to_see">登錄後查看預定記錄</string>
+
+	<string name="login_empty">重試</string>
+	<string name="login_empty_data">抱歉，暫無數據</string>
+	<string name="login_frozen">該帳戶已凍結，請與管理員聯繫</string>
 </resources>

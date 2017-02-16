@@ -150,8 +150,12 @@ public class RegisterActivity extends AppCompatActivity {
 //        startActivity(new Intent(RegisterActivity.this, SetPasswordActivity.class));
 
         YTRequestParams params = new YTBaseRequestParams(YTBaseRequestParams.PARAM_TYPE_JSON);
-        params.put("area_code", areaCode);
-        params.put("phone_number", account);
+        if(areaCode.equals("email")){
+            params.put("email", account);
+        }else{
+            params.put("area_code", areaCode);
+            params.put("phone_number", account);
+        }
 //        params.put("email", AndroidUtil.getDeviceUUID(this));//设备id
         params.put("yoga_pass", inputPwdAgin);//设备类型
         Logs.e(TAG, areaCode + "---" + account);

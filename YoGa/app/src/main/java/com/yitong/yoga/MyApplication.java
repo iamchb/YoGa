@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
+import com.weavey.loading.lib.LoadingLayout;
 import com.yitong.yoga.http.ServiceUrlManager;
 import com.yitong.yoga.http.YTBaseRequestParams;
 import com.yitong.yoga.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -65,8 +66,12 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         // 请求启动页
-//        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.71:8088/YogaApp");//MegStarCRM
-        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.201:7080/YogaApp");//MegStarCRM
+//        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.60:8088/YogaApp");//相鹏
+//        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.95:8080/YogaApp");//冠琼
+//        ServiceUrlManager.setServiceBaseUrl("http://10.10.0.120:8981/YogaApp");//内网
+        ServiceUrlManager.setServiceBaseUrl("http://182.93.56.52:8981/YogaApp");//外网
+
+
 
 //		CrashHandler.getInstance().init(this);
         LeakCanary.install(this);
@@ -99,6 +104,24 @@ public class MyApplication extends Application {
 
         // 初始化地图设置
 //		initMapConfig();
+
+
+        LoadingLayout.getConfig()
+                .setErrorText("出错啦~请稍后重试！")
+                .setEmptyText("抱歉，暂无数据")
+                .setNoNetworkText("无网络连接，请检查您的网络···")
+                .setErrorImage(R.mipmap.define_error)
+                .setEmptyImage(R.mipmap.define_empty)
+                .setNoNetworkImage(R.mipmap.define_nonetwork)
+//                .setAllTipTextColor(R.color.gray)
+                .setAllTipTextColor(R.color.firstColor)
+                .setAllTipTextSize(14)
+                .setReloadButtonText("点我重试哦")
+                .setReloadButtonTextSize(14)
+                .setReloadButtonTextColor(R.color.firstColor)
+                .setReloadButtonWidthAndHeight(150,40);
+//                .setAllPageBackgroundColor(R.color.background);
+//        .setLoadingPageLayout(R.layout.define_loading_page)
     }
 
     //	private void initMapConfig() {

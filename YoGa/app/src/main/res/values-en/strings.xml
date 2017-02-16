@@ -145,4 +145,8 @@ Pure Yoga in various Asian cities, including Hongkong, Shanghai, Singapore and T
 
     <string name="login_immediately">Login immediately</string>
     <string name="login_to_see">Log in and view the scheduled record</string>
+
+    <string name="login_empty">retry</string>
+    <string name="login_empty_data">Sorry, no data</string>
+    <string name="login_frozen">The account has been frozen, please contact your administrator</string>
 </resources>

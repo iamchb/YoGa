@@ -24,7 +24,8 @@ import com.yitong.yoga.R;
 import com.yitong.yoga.ServiceCode;
 import com.yitong.yoga.UserManager;
 import com.yitong.yoga.adapter.MenuItemAdapter;
-import com.yitong.yoga.bean.DoLogin;
+import com.yitong.yoga.bean.BaseBean;
+import com.yitong.yoga.bean.FreshTimeTable;
 import com.yitong.yoga.bean.SwitchFragmentEvent;
 import com.yitong.yoga.fragment.ReservationRecordFragment;
 import com.yitong.yoga.fragment.TimeTablesFragment;
@@ -35,6 +36,7 @@ import com.yitong.yoga.http.YTBaseRequestParams;
 import com.yitong.yoga.http.YTRequestParams;
 import com.yitong.yoga.utils.Logs;
 import com.yitong.yoga.utils.SharedPreferenceUtil;
+import com.yitong.yoga.utils.StringTools;
 import com.yitong.yoga.utils.ToastTools;
 
 import org.greenrobot.eventbus.EventBus;
@@ -73,7 +75,10 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().hide(list.get(1))
                             .show(list.get(0)).commitAllowingStateLoss();
                     // getSupportFragmentManager(). executePendingTransactions();
+                    EventBus.getDefault().post(new FreshTimeTable("10"));
                 }
+
+//                EventBus.getDefault().post(new SwitchFragmentEvent(3));
                 break;
             case 1:
 
@@ -86,8 +91,12 @@ public class MainActivity extends AppCompatActivity {
                        getSupportFragmentManager().beginTransaction().hide(list.get(0))
                                .show(list.get(1)).commitAllowingStateLoss();
                        // getSupportFragmentManager(). executePendingTransactions();
-                   }
+                       if(UserManager.getInstance().isLogin()){
+                           EventBus.getDefault().post(new SwitchFragmentEvent(4));
+                       }
 
+                   }
+//                EventBus.getDefault().post(new SwitchFragmentEvent(4));
 
 
                 break;
@@ -107,12 +116,15 @@ public class MainActivity extends AppCompatActivity {
                 ContextCompat.getColor(this, R.color.thirdColor), ContextCompat.getColor(this, R.color.fourthColor)};
 
         bottomNavigationView = (PagerBottomTabLayout) findViewById(R.id.bottomNavigation);
+
+
 //用TabItemBuilder构建一个导航按钮
         TabItemBuilder tabItemBuilder = new TabItemBuilder(this).create()
                 .setDefaultIcon(image[0])
                 .setText(getResources().getString(R.string.timetable))
                 .setSelectedColor(color[0])
                 .setTag("A")
+
                 .build();
 
         //构建导航栏,得到Controller进行后续控制
@@ -122,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 //                .setMode(TabLayoutMode.HIDE_TEXT)
 //                .setMode(TabLayoutMode.CHANGE_BACKGROUND_COLOR)
                 .setMode(TabLayoutMode.HIDE_TEXT | TabLayoutMode.CHANGE_BACKGROUND_COLOR)
+                .setDefaultColor(getResources().getColor(R.color.grey))
                 .build();
 
 //        controller.setMessageNumber("A",2);
@@ -173,19 +186,19 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
 
+//                    case 3:
+//                        startActivity(new Intent(MainActivity.this, LanguageSelectionActivity.class));
+//                        break;
                     case 3:
-                        startActivity(new Intent(MainActivity.this, LanguageSelectionActivity.class));
-                        break;
-                    case 4:
                         startActivity(new Intent(MainActivity.this, ContactUsActivity.class));
                         break;
-                    case 5:
+                    case 4:
                         startActivity(new Intent(MainActivity.this, AboutUsActivity.class));
                         break;
-                    case 8:
+                    case 7:
                         startActivity(new Intent(MainActivity.this, RegisterActivity.class));
                         break;
-                    case 9:
+                    case 8:
 
                         if(UserManager.getInstance().isLogin()){
                             startActivity(new Intent(MainActivity.this, ModifyPasswordActivity.class));
@@ -195,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         break;
-                    case 10:
+                    case 9:
 
                         if(UserManager.getInstance().isLogin()){
                             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
@@ -213,10 +226,10 @@ public class MainActivity extends AppCompatActivity {
                                                     Logs.e(TAG, ServiceUrlManager.getServiceAbsUrl(ServiceCode.LOGIN_OUT, MainActivity.this));
                                                     Logs.e(TAG, params.getParamsString());
                                                     APPRestClient.post(ServiceUrlManager.getServiceAbsUrl(ServiceCode.LOGIN_OUT, MainActivity.this), params,
-                                                            new APPResponseHandler<DoLogin>(DoLogin.class, null) {
+                                                            new APPResponseHandler<BaseBean>(BaseBean.class, null) {
 
                                                                 @Override
-                                                                public void onSuccess(DoLogin result) {
+                                                                public void onSuccess(BaseBean result) {
                                                                     waitDialog.dismiss();
                                                                     closeDrawLayout();
                                                                     Logs.v(TAG, "onSuccess");
@@ -226,6 +239,8 @@ public class MainActivity extends AppCompatActivity {
                                                                         ToastTools.showShort(getApplicationContext(), result.getMSG());
                                                                         EventBus.getDefault().post(new SwitchFragmentEvent(5));
                                                                         UserManager.getInstance().setLogin(false);
+                                                                        adapter = new MenuItemAdapter(MainActivity.this);
+                                                                        mLvLeftMenu.setAdapter(adapter);
                                                                     }
 
                                                                 }
@@ -291,12 +306,22 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
         myView = inflater.inflate(R.layout.nav_header_main, mLvLeftMenu, false);
         TextView login = (TextView) myView.findViewById(R.id.tologin);
-        login.setText(getResources().getString(R.string.menu_qdl));
+        if(UserManager.getInstance().isLogin()&& !StringTools.isEmpty(UserManager.getInstance().getUserInfo().getPhone_number())){
+            login.setText(UserManager.getInstance().getUserInfo().getPhone_number());
+        }else{
+            login.setText(getResources().getString(R.string.menu_qdl));
+        }
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                if(UserManager.getInstance().isLogin()&& !StringTools.isEmpty(UserManager.getInstance().getUserInfo().getPhone_number())){
+
+                }else{
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+
             }
         });
         mLvLeftMenu.addHeaderView(myView);
@@ -329,12 +354,13 @@ public class MainActivity extends AppCompatActivity {
                 addHeadview();
                 adapter = new MenuItemAdapter(this);
                 mLvLeftMenu.setAdapter(adapter);
-            }else if (event.getPosition() == 4) {
+            }else if (event.getPosition() == 4) {//登录成功回调
                 mLvLeftMenu.removeHeaderView(myView);
                 LayoutInflater inflater = LayoutInflater.from(this);
                 myView = inflater.inflate(R.layout.nav_header_main, mLvLeftMenu, false);
                 TextView login = (TextView) myView.findViewById(R.id.tologin);
-                login.setText(getResources().getString(R.string.logined));
+//                login.setText(getResources().getString(R.string.logined));
+                login.setText(UserManager.getInstance().getUserInfo().getPhone_number());
                 login.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -343,10 +369,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 mLvLeftMenu.addHeaderView(myView);
+                adapter = new MenuItemAdapter(this);
+                mLvLeftMenu.setAdapter(adapter);
 
-            }else if(event.getPosition() == 5){
+            }else if(event.getPosition() == 5){//退出登录回调
                 mLvLeftMenu.removeHeaderView(myView);
-                addHeadview();
+                LayoutInflater inflater = LayoutInflater.from(this);
+                myView = inflater.inflate(R.layout.nav_header_main, mLvLeftMenu, false);
+                TextView login = (TextView) myView.findViewById(R.id.tologin);
+                login.setText(getResources().getString(R.string.menu_qdl));
+                login.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    }
+                });
+                mLvLeftMenu.addHeaderView(myView);
+                adapter = new MenuItemAdapter(this);
+                mLvLeftMenu.setAdapter(adapter);
+
+
             }
 
         }
