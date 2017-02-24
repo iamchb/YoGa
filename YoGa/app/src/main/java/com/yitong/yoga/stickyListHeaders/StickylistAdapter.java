@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
+import com.yitong.yoga.JustifyTextView;
 import com.yitong.yoga.R;
 import com.yitong.yoga.ServiceCode;
 import com.yitong.yoga.UserManager;
@@ -70,7 +71,7 @@ public class StickylistAdapter extends BaseAdapter implements
             mHolder.tvTime = (TextView) convertView.findViewById(R.id.item);
             mHolder.class_time_flag = (TextView) convertView.findViewById(R.id.class_time_flag);
             mHolder.class_time = (TextView) convertView.findViewById(R.id.class_time);
-            mHolder.class_location = (TextView) convertView.findViewById(R.id.class_location);
+            mHolder.class_location = (JustifyTextView) convertView.findViewById(R.id.class_location);
             mHolder.teacher = (TextView) convertView.findViewById(R.id.teacher_name);
             convertView.setTag(mHolder);
         } else {
@@ -165,7 +166,7 @@ public class StickylistAdapter extends BaseAdapter implements
         private TextView tvTime;
         private TextView class_time_flag;
         private TextView class_time;
-        private TextView class_location;
+        private JustifyTextView class_location;
         private TextView teacher;
     }
 

@@ -56,7 +56,7 @@ Pure Yoga在亞洲各個城市，包括香港、上海、新加坡與臺北的�
 
 	<string name="booking_detail">預定詳情</string>
 	<string name="booking_number">預訂編號： 2239 5689 0001</string>
-	<string name="booking_hint">溫馨提示：開課請兩小時之內不允許取消預訂課程</string>
+	<string name="booking_hint">溫馨提示：開課前兩小時之內不允許取消預訂課程</string>
 
 	<string name="course_list_all">全部</string>
 	<string name="course_list_aomen">澳门</string>

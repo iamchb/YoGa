@@ -99,7 +99,7 @@ public class MyAccountActivity extends AppCompatActivity {
                                 consumption_this_month.setText(result.getMap().getConsumption_this());
                             }
                             if(!StringTools.isEmpty(result.getMap().getResidualFrequency())){
-                                residual_class.setText(result.getMap().getResidualFrequency());
+//                                residual_class.setText(result.getMap().getResidualFrequency());
                             }
                         }
 

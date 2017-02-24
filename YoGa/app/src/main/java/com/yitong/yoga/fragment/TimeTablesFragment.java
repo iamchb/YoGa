@@ -407,9 +407,9 @@ public class TimeTablesFragment extends Fragment {
                                         String ap_pm;
                                         int time = Integer.parseInt(for_split[0]);
                                         if (time > 12) {
-                                            ap_pm = "am";
-                                        } else {
                                             ap_pm = "pm";
+                                        } else {
+                                            ap_pm = "am";
                                         }
                                         StickyListBean bean = new StickyListBean(i, chineseNumber[week - 1] + "  " + START_DATE, CLASS_NAME, COACH_NAME, CLASS_ADDR, START_TIME, CLASS_ID + "", ap_pm);
                                         list.add(bean);

@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/class_time"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
@@ -19,23 +19,13 @@
         tools:text="6:30" />
 
     <TextView
-        android:id="@+id/class_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/teacher_name"
-        android:layout_alignStart="@+id/teacher_name"
-        android:layout_below="@+id/teacher_name"
-        android:text="TextView"
-        android:layout_marginBottom="10dp"
-        tools:text="澳門" />
-
-    <TextView
         android:id="@+id/teacher_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item"
         android:layout_marginLeft="61dp"
         android:layout_marginStart="61dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/class_time_flag"
         android:layout_toRightOf="@+id/class_time_flag"
         android:text="TextView"
@@ -61,18 +51,11 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginRight="10dp"
         android:src="@drawable/search_right_arrow" />
 
-    <TextView
-        android:id="@+id/class_time_flag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/class_time"
-        android:layout_alignRight="@+id/class_time"
-        android:layout_below="@+id/class_time"
-        android:text="TextView"
-        tools:text="am" />
+    <!--android:layout_alignRight="@+id/class_time"-->
+    <!--android:layout_alignEnd="@+id/class_time"-->
 
     <View
         android:id="@+id/empty_view"
@@ -80,10 +63,34 @@
         android:layout_height="5dp"
         android:layout_alignBottom="@+id/class_location" />
 
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:layout_alignBottom="@+id/empty_view"-->
+    <TextView
+        android:id="@+id/class_time_flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/class_time"
+        android:layout_alignStart="@+id/class_time"
+        android:layout_below="@+id/class_time"
+        android:paddingLeft="5dp"
+        android:text="TextView"
+        tools:text="am" />
 
-        <!--android:background="@color/gray" />-->
+    <com.yitong.yoga.JustifyTextView
+        android:id="@+id/class_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/teacher_name"
+        android:layout_alignStart="@+id/teacher_name"
+        android:layout_below="@+id/teacher_name"
+        android:layout_marginRight="35dp"
+        android:text="TextView"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        tools:text="澳門" />
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:layout_alignBottom="@+id/empty_view"-->
+
+    <!--android:background="@color/gray" />-->
 </RelativeLayout>

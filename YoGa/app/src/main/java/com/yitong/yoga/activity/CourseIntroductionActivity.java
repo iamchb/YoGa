@@ -77,7 +77,7 @@ public class CourseIntroductionActivity extends AppCompatActivity {
         booking_class_place= (TextView) findViewById(R.id.booking_class_place);
         Button btn = (Button) findViewById(R.id.reserve_btn);
 
-        class_desc.setText(CLASS_DESC);
+        class_desc.setText("       "+CLASS_DESC);
         booking_class.setText(CLASS_NAME);
         booking_class_time.setText(START_DATE+"   "+START_TIME);
         booking_class_howlong.setText(TAKES_TIME+"");
