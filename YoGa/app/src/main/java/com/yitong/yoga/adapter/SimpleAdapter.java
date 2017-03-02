@@ -36,11 +36,12 @@ import static android.content.ContentValues.TAG;
 
 public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapterViewHolder> {
     private List<Curriculum> list;
-//    private int largeCardHeight, smallCardHeight;
+    //    private int largeCardHeight, smallCardHeight;
     private Context context;
+
     public SimpleAdapter(List<Curriculum> list, Context context) {
         this.list = list;
-        this.context=context;
+        this.context = context;
 //        largeCardHeight = DensityUtil.dip2px(context, 150);
 //        smallCardHeight = DensityUtil.dip2px(context, 100);
     }
@@ -53,10 +54,12 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         holder.time.setText(person.getTime());
         holder.coach.setText(person.getCoach());
         holder.amount_money.setText(person.getMoney());
-        holder. name.setText(context.getResources().getString(R.string.reservation_record_kcmc));
-        holder. timeTle.setText(context.getResources().getString(R.string.reservation_time));
-        holder. coachName.setText(context.getResources().getString(R.string.reservation_jl));
+        holder.name.setText(context.getResources().getString(R.string.reservation_record_kcmc));
+        holder.booking_amount_money.setText(person.getORDER_MONEY());
+        holder.timeTle.setText(context.getResources().getString(R.string.reservation_time));
+        holder.coachName.setText(context.getResources().getString(R.string.reservation_jl));
         holder.curriculumName.setText(context.getResources().getString(R.string.reservation_money));
+        holder.booking_amount.setText(context.getResources().getString(R.string.booking_amount));
         holder.cancel.setOnClickListener(new NoDoubleClickListener() {
             @Override
             public void onNoDoubleClick(View v) {
@@ -70,7 +73,6 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                                     public void onClick(DialogInterface dialog,
                                                         int which) {
 //                                        Toast.makeText(context, context.getResources().getString(R.string.reservation_cancel), Toast.LENGTH_SHORT).show();
-
 
 
                                         Log.v(TAG, "发送请求开始");
@@ -92,8 +94,8 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
                                                         if (result.getSTATUS().equals("1")) {
 
-                                                                list.remove(person);
-                                                                notifyDataSetChanged();
+                                                            list.remove(person);
+                                                            notifyDataSetChanged();
 
                                                         }
 
@@ -149,7 +151,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         });
 
         holder.contentView.setOnClickListener(new NoDoubleClickListener() {
-//        holder.booking_details.setOnClickListener(new View.OnClickListener() {
+            //        holder.booking_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onNoDoubleClick(View v) {
 
@@ -157,7 +159,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
                 // 发送登录请求
                 Log.v(TAG, "发送请求开始");
                 YTRequestParams params = new YTBaseRequestParams(YTBaseRequestParams.PARAM_TYPE_JSON);
-                if(null!=UserManager.getInstance().getUserInfo().getAgent_id()){
+                if (null != UserManager.getInstance().getUserInfo().getAgent_id()) {
                     params.put("uid", UserManager.getInstance().getUserInfo().getAgent_id());
                 }
 //                params.put("id", person.getClass_id());
@@ -176,7 +178,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
                                 if (result.getSTATUS().equals("1")) {
 
-                                    Intent intent=new Intent(context, BookingDetailActivity.class);
+                                    Intent intent = new Intent(context, BookingDetailActivity.class);
 
                                     intent.putExtra("code_id", person.getCode_id());
                                     context.startActivity(intent);
@@ -274,6 +276,9 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
 
         public TextView curriculumName;
         public TextView amount_money;
+
+        public TextView booking_amount;
+        public TextView booking_amount_money;
         public ImageView booking_details;
 
         public LinearLayout contentView;
@@ -282,21 +287,26 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         public SimpleAdapterViewHolder(View itemView, boolean isItem) {
             super(itemView);
             if (isItem) {
-                contentView= (LinearLayout) itemView.findViewById(R.id.contentview);
+                contentView = (LinearLayout) itemView.findViewById(R.id.contentview);
                 curriculum = (TextView) itemView.findViewById(R.id.type);
                 time = (TextView) itemView.findViewById(R.id.time);
                 coach = (TextView) itemView.findViewById(R.id.coach);
                 cancel = (Button) itemView.findViewById(R.id.cancel_action);
 
-                name=(TextView) itemView.findViewById(R.id.name);
-                timeTle=(TextView) itemView.findViewById(R.id.timetitle);
-                coachName=(TextView) itemView.findViewById(R.id.coach_name);
+                name = (TextView) itemView.findViewById(R.id.name);
+                timeTle = (TextView) itemView.findViewById(R.id.timetitle);
+                coachName = (TextView) itemView.findViewById(R.id.coach_name);
 
-                curriculumName=(TextView) itemView.findViewById(R.id.curriculum);
-                amount_money=(TextView) itemView.findViewById(R.id.amount_money);
-                booking_details=(ImageView) itemView.findViewById(R.id.booking_details);
+                curriculumName = (TextView) itemView.findViewById(R.id.curriculum);
+                booking_amount = (TextView) itemView.findViewById(R.id.booking_amount);
 
-                cardviewiew= (CardView) itemView.findViewById(R.id.cardviewiew);
+
+                amount_money = (TextView) itemView.findViewById(R.id.amount_money);
+                booking_amount_money = (TextView) itemView.findViewById(R.id.booking_amount_money);
+
+                booking_details = (ImageView) itemView.findViewById(R.id.booking_details);
+
+                cardviewiew = (CardView) itemView.findViewById(R.id.cardviewiew);
             }
 
         }

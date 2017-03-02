@@ -53,7 +53,7 @@ public class MyAccountActivity extends AppCompatActivity {
         });
 
         account_balance= (TextView) findViewById(R.id.account_balance);
-        residual_class= (TextView) findViewById(R.id.residual_class);
+//        residual_class= (TextView) findViewById(R.id.residual_class);
         consumption_this_month= (TextView) findViewById(R.id.consumption_this_month);
         last_month_consumption= (TextView) findViewById(R.id.last_month_consumption);
 

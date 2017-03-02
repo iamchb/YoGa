@@ -48,7 +48,8 @@ Pure Yoga in various Asian cities, including Hongkong, Shanghai, Singapore and T
     <string name="reservation_record_kczt">Course status:</string>
     <string name="reservation_time">Time：</string>
     <string name="reservation_jl">Coach：</string>
-    <string name="reservation_money">Course amount</string>
+    <string name="reservation_money">Course amount：</string>
+    <string name="booking_amount">Booking amount：</string>
     <string name="reservation_hit">Are you sure you want to cancel this reservation?</string>
     <string name="reservation_cancel">Has been canceled</string>
 

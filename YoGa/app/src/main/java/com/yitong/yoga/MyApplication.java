@@ -66,7 +66,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         // 请求启动页
-//        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.64:8088/YogaApp");//相鹏
+//        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.61:8088/YogaApp");//相鹏
 //        ServiceUrlManager.setServiceBaseUrl("http://10.10.10.95:8080/YogaApp");//冠琼
 //        ServiceUrlManager.setServiceBaseUrl("http://10.10.0.120:8981/YogaApp");//内网
         ServiceUrlManager.setServiceBaseUrl("http://182.93.56.52:8981/YogaApp");//外网

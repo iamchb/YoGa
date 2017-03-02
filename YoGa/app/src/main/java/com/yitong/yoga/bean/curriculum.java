@@ -14,9 +14,11 @@ public class Curriculum {
     private String class_id;
     private String code_id;
     private String ORDER_STATUS;
+    private String ORDER_MONEY;;
 
 
-    public Curriculum(String curriculum, String time, String coach, String money,String class_id,String code_id,String ORDER_STATUS) {
+
+    public Curriculum(String curriculum, String time, String coach, String money,String class_id,String code_id,String ORDER_STATUS,String ORDER_MONEY) {
         this.curriculum = curriculum;
         this.time = time;
         this.coach = coach;
@@ -24,6 +26,7 @@ public class Curriculum {
         this.class_id=class_id;
         this.code_id=code_id;
         this. ORDER_STATUS=ORDER_STATUS;
+        this.ORDER_MONEY=ORDER_MONEY;
     }
 
     public String getORDER_STATUS() {
@@ -82,16 +85,25 @@ public class Curriculum {
         this.money = money;
     }
 
+    public String getORDER_MONEY() {
+        return ORDER_MONEY;
+    }
+
+    public void setORDER_MONEY(String ORDER_MONEY) {
+        this.ORDER_MONEY = ORDER_MONEY;
+    }
+
     @Override
     public String toString() {
         return "Curriculum{" +
-                "curriculum='" + curriculum + '\'' +
+                "class_id='" + class_id + '\'' +
+                ", curriculum='" + curriculum + '\'' +
                 ", time='" + time + '\'' +
                 ", coach='" + coach + '\'' +
                 ", money='" + money + '\'' +
-                ", class_id='" + class_id + '\'' +
                 ", code_id='" + code_id + '\'' +
                 ", ORDER_STATUS='" + ORDER_STATUS + '\'' +
+                ", ORDER_MONEY='" + ORDER_MONEY + '\'' +
                 '}';
     }
 }

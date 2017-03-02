@@ -36,12 +36,13 @@ public class BookingHistoryAdapter extends BaseRecyclerAdapter<BookingHistoryAda
         holder.time.setText(person.getTime());
         holder.coach.setText(person.getCoach());
         holder.amount_money.setText(person.getMoney());
+        holder.booking_amount_money.setText(person.getORDER_MONEY());
         holder. name.setText(context.getResources().getString(R.string.reservation_record_kcmc));
         holder. timeTle.setText(context.getResources().getString(R.string.reservation_time));
         holder. coachName.setText(context.getResources().getString(R.string.reservation_jl));
         holder.curriculumName.setText(context.getResources().getString(R.string.reservation_money));
         holder. reservation_record_kczt.setText(context.getResources().getString(R.string.reservation_record_kczt));
-
+        holder.booking_amount.setText(context.getResources().getString(R.string.booking_amount));
         if(person.getORDER_STATUS().equals("0")){
             holder. reservation_status.setText("已預訂");
         }else if(person.getORDER_STATUS().equals("1")){
@@ -268,6 +269,10 @@ public class BookingHistoryAdapter extends BaseRecyclerAdapter<BookingHistoryAda
         public TextView curriculumName;
         public TextView reservation_status;
         public TextView amount_money;
+
+        public TextView booking_amount;
+        public TextView booking_amount_money;
+
         public ImageView booking_details;
         public TextView reservation_record_kczt;
         public LinearLayout contentView;
@@ -288,6 +293,10 @@ public class BookingHistoryAdapter extends BaseRecyclerAdapter<BookingHistoryAda
 
                 curriculumName=(TextView) itemView.findViewById(R.id.curriculum);
                 amount_money=(TextView) itemView.findViewById(R.id.amount_money);
+
+                booking_amount = (TextView) itemView.findViewById(R.id.booking_amount);
+                booking_amount_money = (TextView) itemView.findViewById(R.id.booking_amount_money);
+
                 booking_details=(ImageView) itemView.findViewById(R.id.booking_details);
 
                 cardviewiew= (CardView) itemView.findViewById(R.id.cardviewiew);

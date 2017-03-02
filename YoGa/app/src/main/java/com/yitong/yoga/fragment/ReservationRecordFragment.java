@@ -323,7 +323,7 @@ public class ReservationRecordFragment extends Fragment {
                             if (result.getLIST() != null && result.getLIST().size() > 0) {
                                 for (int i = 0; i < result.getLIST().size(); i++) {
                                     BookListBean.LISTBean bean = result.getLIST().get(i);
-                                    personList.add(new Curriculum(bean.getCLASS_NAME(), bean.getSTART_DATE() + " " + bean.getSTART_TIME(), bean.getCOACH_NAME(), bean.getTRAN_MONEY() + "", bean.getCLASS_ID() + "", bean.getORDER_ID(), bean.getORDER_STATUS()));
+                                    personList.add(new Curriculum(bean.getCLASS_NAME(), bean.getSTART_DATE() + " " + bean.getSTART_TIME(), bean.getCOACH_NAME(), bean.getTRAN_MONEY() , bean.getCLASS_ID() + "", bean.getORDER_ID(), bean.getORDER_STATUS(),bean.getORDER_MONEY()));
                                 }
 //                                loading.setStatus(LoadingLayout.Success);
 

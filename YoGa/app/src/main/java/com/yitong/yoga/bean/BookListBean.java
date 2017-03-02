@@ -66,7 +66,16 @@ public class BookListBean {
         private String START_DATE;
         private String START_TIME;
         private int TAKES_TIME;
-        private double TRAN_MONEY;
+        private String TRAN_MONEY;
+         private String ORDER_MONEY;
+
+        public String getORDER_MONEY() {
+            return ORDER_MONEY;
+        }
+
+        public void setORDER_MONEY(String ORDER_MONEY) {
+            this.ORDER_MONEY = ORDER_MONEY;
+        }
 
         public String getCLASS_ADDR() {
             return CLASS_ADDR;
@@ -140,11 +149,11 @@ public class BookListBean {
             this.TAKES_TIME = TAKES_TIME;
         }
 
-        public double getTRAN_MONEY() {
+        public String getTRAN_MONEY() {
             return TRAN_MONEY;
         }
 
-        public void setTRAN_MONEY(double TRAN_MONEY) {
+        public void setTRAN_MONEY(String TRAN_MONEY) {
             this.TRAN_MONEY = TRAN_MONEY;
         }
 
@@ -161,6 +170,7 @@ public class BookListBean {
                     ", START_TIME='" + START_TIME + '\'' +
                     ", TAKES_TIME=" + TAKES_TIME +
                     ", TRAN_MONEY=" + TRAN_MONEY +
+                    ", ORDER_MONEY='" + ORDER_MONEY + '\'' +
                     '}';
         }
     }

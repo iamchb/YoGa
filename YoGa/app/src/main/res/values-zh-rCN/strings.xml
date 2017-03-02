@@ -50,7 +50,8 @@ Pure Yoga在亚洲各个城市，包括香港、上海、新加坡与台北的�
 	<string name="reservation_record_kczt">课程状态：</string>
 	<string name="reservation_time">时间：</string>
 	<string name="reservation_jl">教练：</string>
-	<string name="reservation_money">课程金额</string>
+	<string name="reservation_money">课程金额：</string>
+	<string name="booking_amount">预订金额：</string>
 	<string name="reservation_hit">您确定取消此预定课程？</string>
 	<string name="reservation_cancel">已取消</string>
 
